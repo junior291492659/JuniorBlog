@@ -1,0 +1,93 @@
+.visiting-card {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  .card-banner {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-top: 5rem;
+    border-radius: 1rem;
+    text-align: center;
+    img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .card-context {
+    width: 100%;
+    padding-top: 1rem;
+    text-align: center;
+
+    .card-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .card-tag {
+      padding-top: 0.5rem;
+      color: rgb(252, 192, 0);
+      font-size: 1rem;
+      img {
+        width: 1.5rem;
+        margin-left: 0.3rem;
+      }
+    }
+
+    .card-mail {
+      padding-top: 0.2rem;
+    }
+
+    .card-smalltext {
+      padding: 1.2rem 2.5rem;
+      color: rgb(154, 154, 154);
+      text-align: left;
+    }
+  }
+
+  .card-footer {
+    width: 100%;
+
+    :global {
+      .ant-divider {
+        border-top-color: #e7e8e6;
+      }
+    }
+
+    .divider {
+      margin-bottom: 0.7rem;
+      color: rgba(150, 150, 150, 0.7);
+    }
+  }
+
+  .card-link {
+    width: 100%;
+    padding-bottom: 0.7rem;
+
+    .link-item {
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      color: rgb(150, 150, 150);
+
+      a {
+        color: inherit;
+      }
+      .card-qq:hover {
+        color: rgb(14, 136, 235);
+      }
+      .card-github:hover {
+        color: black;
+      }
+      .card-zhihu:hover {
+        color: rgb(14, 136, 235);
+      }
+    }
+  }
+}

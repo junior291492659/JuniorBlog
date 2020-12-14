@@ -16,6 +16,7 @@
     "@types/react-dom": "^16.9.10",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "animate.css": "^4.1.1",
     "antd": "^4.9.2",
     "axios": "^0.21.0",
     "babel-eslint": "^10.1.0",
@@ -62,6 +63,7 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.0.7",
+    "react-lazyload": "^3.1.0",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
     "resolve": "1.18.1",
@@ -170,6 +172,7 @@
   },
   "devDependencies": {
     "@types/react-helmet-async": "^1.0.3",
+    "@types/react-lazyload": "^3.0.0",
     "@types/react-router-dom": "^5.1.6",
     "babel-plugin-import": "^1.13.3",
     "less": "^3.12.2",

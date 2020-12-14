@@ -1,9 +1,10 @@
 .center {
   height: 100%;
   margin: 0 auto;
-  border: solid 1px #ccc;
+  // border: solid 1px #ccc;
+  // border-top: none;
   border-radius: 5px;
-
+  margin-top: 4.5rem;
   .everyday-sentence {
     padding: 1rem;
     text-align: right;
@@ -32,5 +33,12 @@
 @media only screen and (max-width: 768px) {
   .center {
     width: 100%;
+
+    .everyday-sentence {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #fcc000;
+      color: #fcc000;
+    }
   }
 }

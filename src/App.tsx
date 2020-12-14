@@ -19,6 +19,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      {/* <h1 className="animated bounce">An animated element</h1> */}
     </HelmetProvider>
   );
 }
