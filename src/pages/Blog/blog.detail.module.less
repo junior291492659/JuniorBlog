@@ -1,0 +1,118 @@
+@font_color: rgb(252, 192, 0);
+
+.md-wrap {
+  width: 97%;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  position: relative;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  .md-back {
+    cursor: pointer;
+    background-color: transparent;
+    border-bottom: solid 1px rgb(190, 190, 190);
+
+    :global {
+      .ant-page-header-heading-title {
+        color: inherit;
+      }
+    }
+  }
+
+  .md-back:hover {
+    span {
+      color: @font_color;
+    }
+    color: @font_color;
+  }
+
+  .md-header {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 1.5rem;
+    border-bottom: solid 1px rgb(190, 190, 190);
+
+    .md-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #111;
+
+      strong {
+        color: @font_color;
+      }
+    }
+
+    .md-icon-list {
+      padding: 0.5rem 0;
+
+      .md-icon {
+        margin: 0 1rem;
+
+        span {
+          margin-right: 0.2rem;
+          color: @font_color;
+        }
+      }
+    }
+  }
+
+  .md-context {
+    color: initial;
+    padding: 1rem 1.5rem;
+
+    .ending {
+      font-size: 1.5rem;
+      color: @font_color;
+      margin-bottom: 0;
+    }
+
+    .assist {
+      width: 6rem;
+      height: 6rem;
+      margin: 0 auto;
+      position: relative;
+      text-align: center;
+      position: relative;
+
+      img {
+        cursor: pointer;
+        opacity: 0.3;
+        position: absolute;
+        width: 6rem;
+        height: 6rem;
+        top: 0;
+        left: 0;
+        transition: 1s;
+      }
+
+      &.heart {
+        img {
+          transform: scale(3);
+          opacity: 0;
+        }
+
+        img:nth-child(2) {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      div {
+        position: absolute;
+        display: block;
+        width: 5rem;
+        height: 4rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        line-height: 4rem;
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }
+}

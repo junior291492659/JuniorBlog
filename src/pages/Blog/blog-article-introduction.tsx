@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import img1 from "../../image/intro1.jpg";
 
 export interface BlogArticleI {
+  id: number;
   type: number;
   title: string;
   introduction: string;
@@ -30,7 +31,7 @@ export default function BlogArticleIntroduction(props: BlogArticleProps) {
           <div className={style["blog-title-wrap"]}>
             <div className={style["blog-title"]}>
               <strong>{data.type == 1 ? "【转载】" : "【原创】"}</strong>
-              <Link to={`/blogassign/article/TODO`}>{data.title}</Link>
+              <Link to={`/blogdetail/article${data.id}`}>{data.title}</Link>
               <div className={style["blog-icon-list"]}>
                 <span className={style["blog-icon"]}>
                   <Link to={`/blog/tag/TODO`}>

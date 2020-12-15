@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Divider } from "antd";
 import headImg from "../../image/zhengfeng.jpg";
 import banner from "../../image/banner.jpg";
-import lv from "../../image/lv1.png";
+import lv from "../../image/LV1.png";
 import { QqOutlined, GithubOutlined, ZhihuOutlined } from "@ant-design/icons";
 import style from "./index.module.less";
 
