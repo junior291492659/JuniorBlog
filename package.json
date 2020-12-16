@@ -178,6 +178,7 @@
   },
   "devDependencies": {
     "@types/highlight.js": "^10.1.0",
+    "@types/jquery": "^3.5.5",
     "@types/marked": "^1.2.1",
     "@types/react-helmet-async": "^1.0.3",
     "@types/react-highlight": "^0.12.2",

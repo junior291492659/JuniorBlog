@@ -1,0 +1,73 @@
+.everyday-sentence {
+  width: 100%;
+  padding: 1rem;
+  text-align: right;
+  border-bottom: 1px solid #fcc000;
+  color: #fcc000;
+
+  span {
+    cursor: pointer;
+  }
+}
+
+.card {
+  width: 20rem;
+
+  .header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .left-side {
+      display: flex;
+      flex-direction: column;
+      color: #969696;
+      word-break: keep-all;
+
+      .title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #333;
+        text-align: center;
+      }
+
+      [role="img"] {
+        color: #fcc000;
+        margin-right: 0.5rem;
+      }
+
+      .date,
+      .love {
+        padding-top: 0.5rem;
+      }
+    }
+  }
+  img {
+    width: 10rem;
+    // border-radius: 0.5rem;
+  }
+
+  .content,
+  .note {
+    padding-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .btn {
+    padding-top: 0.5rem;
+    text-align: center;
+
+    // & > :nth-child(1) {
+    //   border-color: #eee !important;
+    // }
+
+    & > :nth-child(1):hover {
+      color: #fcc000;
+      border-color: #fcc000 !important;
+    }
+  }
+}

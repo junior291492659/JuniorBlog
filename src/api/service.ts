@@ -35,3 +35,12 @@ export function addBlogArticle() {
     })
     .then((res) => res.data);
 }
+
+export function getEverydaySentence() {
+  return service
+    .request({
+      method: "get",
+      url: "http://open.iciba.com/dsapi/",
+    })
+    .then((res) => res.data);
+}
