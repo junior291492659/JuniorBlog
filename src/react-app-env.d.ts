@@ -76,3 +76,5 @@ declare module "*.module.sass" {
 }
 
 declare module "markdown-navbar";
+
+declare module "highlight.js";

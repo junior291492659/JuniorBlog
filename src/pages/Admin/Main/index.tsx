@@ -90,15 +90,19 @@ const Main: React.FC = (props) => {
             </Button>
           </Header>
           <Content style={{ margin: "0 16px" }}>
-            <div>
-              <div style={{ padding: 24, minHeight: 360 }}>
-                <Route path="/admin" exact component={Index}></Route>
-                <Route
-                  path="/admin/addArticle"
-                  exact
-                  component={AddArticle}
-                ></Route>
-              </div>
+            <div
+              style={{
+                padding: "16px 24px",
+                minHeight: "360px",
+                minWidth: "1000px",
+              }}
+            >
+              <Route path="/admin" exact component={Index}></Route>
+              <Route
+                path="/admin/addArticle"
+                exact
+                component={AddArticle}
+              ></Route>
             </div>
           </Content>
           <Footer className={style["footer"]}>
