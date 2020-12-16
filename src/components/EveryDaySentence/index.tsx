@@ -93,9 +93,7 @@ export default function EveryDaySentence() {
             document.getElementById("everyday-sentence") as HTMLElement
           }
         >
-          <span className="animated bounce">
-            {data ? data.content : "loading..."}
-          </span>
+          <span className="animated">{data ? data.content : "loading..."}</span>
         </Popover>
       </div>
     </div>
