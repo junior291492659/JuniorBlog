@@ -5,6 +5,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/Blog/blog-detail";
 import Login from "./pages/Admin/Login";
+import Main from "./pages/Admin/Main";
 import { BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -19,8 +20,9 @@ function App() {
           {/* <Header /> */}
           <Switch>
             <Route path="/" exact component={Blog}></Route>
-            <Route path="/blogdetail/:id" component={BlogDetail}></Route>
-            <Route path="/login" component={Login}></Route>
+            <Route path="/blogdetail/:id" exact component={BlogDetail}></Route>
+            <Route path="/login" exact component={Login}></Route>
+            <Route path="/admin" exact component={Main}></Route>
           </Switch>
         </div>
         <BackTop />

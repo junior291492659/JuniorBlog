@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, message } from "antd";
+import Loader from "../../../components/Loader";
 import style from "./index.module.less";
-import { login, ILogin, addBlogArticle } from "../../../api/service";
+import {
+  login,
+  checkLogin,
+  ILogin,
+  addBlogArticle,
+} from "../../../api/service";
+import { useLocalStorage } from "../../../utils/useLocalStorage";
+// import { withRouter } from "react-router-dom";
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 };
 const tailLayout = {
-  wrapperCol: { offset: 4, span: 16 },
+  wrapperCol: { offset: 4, span: 20 },
 };
 
 interface LoginData extends ILogin {
@@ -18,12 +26,25 @@ interface LoginData extends ILogin {
 
 function Login() {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [token, setToken, removeToken] = useLocalStorage("token", null, {
+    raw: true,
+  });
 
   const onFinish = (values: LoginData) => {
     console.log("Success:", values);
     login({ username: values.username, password: values.password })
       .then((res) => {
         console.log("res in login", res);
+        if (res.code === 200) {
+          message.success("登录成功");
+          //是否记住token
+          setToken(res.token);
+
+          window.location.replace("/admin");
+        } else {
+          message.error(res.message);
+        }
       })
       .catch((error) => {
         console.log("error", error);
@@ -38,63 +59,63 @@ function Login() {
     form.resetFields();
   };
 
-  const onTest = () => {
-    addBlogArticle().then((res) => {
-      console.log(res);
+  // 验证是否已经登录，若已经登录则直接跳转至后台界面
+  useEffect(() => {
+    checkLogin().then((res) => {
+      if (res.code === 200) {
+        console.log("在登录界面。检测到已经登录");
+        window.location.replace("/admin");
+      }
+      setLoading(false);
     });
-  };
+  }, []);
 
   return (
-    <div className={style["form-container"]}>
-      <Helmet>
-        <title>登录 | Junior_Lee的个人博客管理</title>
-      </Helmet>
-      <div className={style["title"]}>Junior Lee博客后台管理登录</div>
-      <Form
-        {...layout}
-        form={form}
-        name="basic"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+    <Loader loading={loading}>
+      <div className={style["form-container"]}>
+        <Helmet>
+          <title>登录 | Junior_Lee的个人博客管理</title>
+        </Helmet>
+        <div className={style["title"]}>Junior Lee博客后台管理登录</div>
+        <Form
+          {...layout}
+          form={form}
+          name="basic"
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
         >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-          <Button
-            className={style["reset"]}
-            htmlType="button"
-            onClick={onReset}
+          <Form.Item
+            label="用户名"
+            name="username"
+            rules={[{ required: true, message: "Please input your username!" }]}
           >
-            Reset
-          </Button>
-          <Button className={style["reset"]} htmlType="button" onClick={onTest}>
-            Test
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="密码"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+            <Button
+              className={style["reset"]}
+              htmlType="button"
+              onClick={onReset}
+            >
+              Reset
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </Loader>
   );
 }
 

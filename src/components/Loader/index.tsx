@@ -15,7 +15,7 @@ const Loader: React.FC<LoaderProps> = (props) => {
       tip={"急速加载中"}
       indicator={spinIcon}
       spinning={loading}
-      style={{ color: "#f1c000" }}
+      style={{ top: "10rem", color: "#f1c000" }}
     >
       {children}
     </Spin>
