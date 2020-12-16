@@ -83,18 +83,21 @@ export default function EveryDaySentence() {
 
   return (
     <div className={style["everyday-sentence"]}>
-      <Popover
-        placement="bottom"
-        content={cardNode}
-        trigger="hover"
-        getPopupContainer={() =>
-          document.getElementById("everyday-sentence") as HTMLElement
-        }
-      >
-        <span className="animated" id="everyday-sentence">
-          {data ? data.content : "loading..."}
-        </span>
-      </Popover>
+      <div style={{ display: "inline-block" }} id="everyday-sentence">
+        <Popover
+          placement="bottom"
+          content={cardNode}
+          trigger="hover"
+          autoAdjustOverflow={true}
+          getPopupContainer={() =>
+            document.getElementById("everyday-sentence") as HTMLElement
+          }
+        >
+          <span className="animated bounce">
+            {data ? data.content : "loading..."}
+          </span>
+        </Popover>
+      </div>
     </div>
   );
 }
