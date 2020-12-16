@@ -49,6 +49,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "markdown-navbar": "^1.4.3",
+    "marked": "^1.2.7",
     "mini-css-extract-plugin": "0.11.3",
     "moment": "^2.29.1",
     "optimize-css-assets-webpack-plugin": "5.0.4",

@@ -9,6 +9,8 @@ import Main from "./pages/Admin/Main";
 import { BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import AddArticle from "./pages/Admin/Main/AddArticle";
+
 function App() {
   return (
     <HelmetProvider>
@@ -17,12 +19,11 @@ function App() {
           <meta charSet="utf-8" />
         </Helmet>
         <div className="App">
-          {/* <Header /> */}
           <Switch>
             <Route path="/" exact component={Blog}></Route>
             <Route path="/blogdetail/:id" exact component={BlogDetail}></Route>
             <Route path="/login" exact component={Login}></Route>
-            <Route path="/admin" exact component={Main}></Route>
+            <Route path="/admin" component={Main}></Route>
           </Switch>
         </div>
         <BackTop />
