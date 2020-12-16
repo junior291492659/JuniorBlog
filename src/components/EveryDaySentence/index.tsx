@@ -4,7 +4,7 @@ import {
   EyeFilled,
   EyeInvisibleFilled,
 } from "@ant-design/icons";
-import { Button, Popover } from "antd";
+import { Button, message, Popover } from "antd";
 import React, { useEffect, useState } from "react";
 import style from "./index.module.less";
 import { getEverydaySentence } from "../../api/service";
@@ -27,15 +27,22 @@ export default function EveryDaySentence() {
       dataType: "jsonp", //加上这行代码即可
       success: function (result) {
         console.log(result, typeof result);
-        const res = {
-          content: result.content,
-          note: result.note,
-          pic: result.picture2,
-          date: result.dateline,
-          love: result.love,
-        };
-        setData(res);
+        try {
+          const res = {
+            content: result.content,
+            note: result.note,
+            pic: result.picture2,
+            date: result.dateline,
+            love: result.love,
+          };
+          setData(res);
+        } catch {
+          message.error("每日一句服务获取出错");
+        }
       },
+    }).catch((error) => {
+      console.log(error);
+      message.error("每日一句服务获取出错");
     });
   }, []);
 
@@ -61,6 +68,7 @@ export default function EveryDaySentence() {
       </div>
       <div className={style["btn"]}>
         <Button
+          type="default"
           icon={visible ? <EyeInvisibleFilled /> : <EyeFilled />}
           onClick={() => {
             console.log("click");
@@ -75,11 +83,16 @@ export default function EveryDaySentence() {
 
   return (
     <div className={style["everyday-sentence"]}>
-      <Popover placement="bottom" content={cardNode} trigger="hover">
-        <span>
-          {data
-            ? data.content
-            : "台阶是一层一层筑起的，目前的现实是未来理想的基础。 —— 徐特立"}
+      <Popover
+        placement="bottom"
+        content={cardNode}
+        trigger="hover"
+        getPopupContainer={() =>
+          document.getElementById("everyday-sentence") as HTMLElement
+        }
+      >
+        <span className="animated" id="everyday-sentence">
+          {data ? data.content : "loading..."}
         </span>
       </Popover>
     </div>
