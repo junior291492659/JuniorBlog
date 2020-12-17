@@ -16,11 +16,12 @@ import {
 import Index from "./IndexPage";
 import AddArticle from "./AddArticle";
 import { Helmet } from "react-helmet-async";
+import Test from "../../../components/EveryDaySentence/test";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-const Main: React.FC = (props) => {
+function Main() {
   const [loading, setLoading] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
@@ -103,6 +104,7 @@ const Main: React.FC = (props) => {
                 exact
                 component={AddArticle}
               ></Route>
+              <Route path="/admin/test" exact component={Test}></Route>
             </div>
           </Content>
           <Footer className={style["footer"]}>
@@ -112,6 +114,6 @@ const Main: React.FC = (props) => {
       </Layout>
     </Loader>
   );
-};
+}
 
 export default withRouter(Main);

@@ -7,7 +7,6 @@ import {
 import { Button, message, Popover } from "antd";
 import React, { useEffect, useState } from "react";
 import style from "./index.module.less";
-import { getEverydaySentence } from "../../api/service";
 
 interface EveryDaySentenceI {
   content: string;
@@ -20,6 +19,7 @@ interface EveryDaySentenceI {
 export default function EveryDaySentence() {
   const [data, setData] = useState<EveryDaySentenceI | null>(null);
   const [visible, setVisible] = useState<boolean>(false);
+  const [defaultText, setDefaultText] = useState<string>("loading...");
 
   useEffect(() => {
     $.ajax({
@@ -37,12 +37,18 @@ export default function EveryDaySentence() {
           };
           setData(res);
         } catch {
-          message.error("每日一句服务获取出错");
+          // message.error("每日一句服务获取出错");
+          setDefaultText(
+            "台阶是一层一层筑起的，目前的现实是未来理想的基础。 —— 徐特立"
+          );
         }
       },
     }).catch((error) => {
       console.log(error);
-      message.error("每日一句服务获取出错");
+      // message.error("每日一句服务获取出错");
+      setDefaultText(
+        "台阶是一层一层筑起的，目前的现实是未来理想的基础。 —— 徐特立"
+      );
     });
   }, []);
 
@@ -84,17 +90,21 @@ export default function EveryDaySentence() {
   return (
     <div className={style["everyday-sentence"]}>
       <div style={{ display: "inline-block" }} id="everyday-sentence">
-        <Popover
-          placement="bottom"
-          content={cardNode}
-          trigger="hover"
-          autoAdjustOverflow={true}
-          getPopupContainer={() =>
-            document.getElementById("everyday-sentence") as HTMLElement
-          }
-        >
-          <span className="animated">{data ? data.content : "loading..."}</span>
-        </Popover>
+        {data ? (
+          <Popover
+            placement="bottom"
+            content={cardNode}
+            trigger="hover"
+            autoAdjustOverflow={true}
+            getPopupContainer={() =>
+              document.getElementById("everyday-sentence") as HTMLElement
+            }
+          >
+            <span className="animated">{data.content}</span>
+          </Popover>
+        ) : (
+          <span className="animated">{defaultText}</span>
+        )}
       </div>
     </div>
   );

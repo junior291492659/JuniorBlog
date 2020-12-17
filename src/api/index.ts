@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { message } from "antd";
+// import {HashRouter} from 'react-router-dom'
 // import {BrowserRouter} from "react-router-dom"
 
 // let baseUrl = "http://129.204.231.203:3306/";

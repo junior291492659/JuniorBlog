@@ -10,6 +10,7 @@ import {
   addBlogArticle,
 } from "../../../api/service";
 import { useLocalStorage } from "../../../utils/useLocalStorage";
+import { RouteComponentProps } from "react-router-dom";
 // import { withRouter } from "react-router-dom";
 
 const layout = {
@@ -24,7 +25,7 @@ interface LoginData extends ILogin {
   remember: boolean;
 }
 
-function Login() {
+function Login(props: RouteComponentProps) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState<boolean>(true);
   const [token, setToken, removeToken] = useLocalStorage("token", null, {
@@ -41,7 +42,8 @@ function Login() {
           //是否记住token
           setToken(res.token);
 
-          window.location.replace("/admin");
+          // window.location.replace("/admin");
+          props.history.replace("/admin");
         } else {
           message.error(res.message);
         }
