@@ -13,9 +13,10 @@ import {
   BookOutlined,
 } from "@ant-design/icons";
 
+import { Helmet } from "react-helmet-async";
 import Index from "./IndexPage";
 import AddArticle from "./AddArticle";
-import { Helmet } from "react-helmet-async";
+import ImageUpload from "../ImageUpload";
 import Test from "../../../components/EveryDaySentence/test";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -71,7 +72,9 @@ function Main() {
               <Menu.Item key="5">草稿列表</Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<FileImageOutlined />} title="图片">
-              <Menu.Item key="6">Team 1</Menu.Item>
+              <Menu.Item key="6">
+                <Link to="/admin/uploadImage">上传图片</Link>
+              </Menu.Item>
               <Menu.Item key="8">Team 2</Menu.Item>
             </SubMenu>
             <Menu.Item key="9" icon={<ToolOutlined />}>
@@ -103,6 +106,11 @@ function Main() {
                 path="/admin/addArticle"
                 exact
                 component={AddArticle}
+              ></Route>
+              <Route
+                path="/admin/uploadImage"
+                exact
+                component={ImageUpload}
               ></Route>
               <Route path="/admin/test" exact component={Test}></Route>
             </div>
