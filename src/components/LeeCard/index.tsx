@@ -11,8 +11,9 @@ export default function LemonCard() {
     <div className={`${style["visiting-card"]} animated fadeInRight`}>
       <div
         className={style["card-banner"]}
-        style={{ backgroundImage: `url(${banner})` }}
+        // style={{ backgroundImage: `url(${banner})` }}
       >
+        <img src={banner} alt="" />
         <img src={headImg} alt="" />
       </div>
       <div className={style["card-context"]}>
