@@ -4,6 +4,7 @@ import {
   getBlogArticleList,
   BlogArticleListI,
   deleteBlogArticleById,
+  getBlogDraftList,
 } from "../../../api/service";
 import { ArticleType, ArticleSourceType } from "../../../const";
 import style from "./index.module.less";
@@ -112,7 +113,8 @@ function DraftList(props: RouteComponentProps) {
           })
           .catch((error) => {
             setLoading(false);
-            message.error(error);
+            message.error("不好意思，服务器出错了");
+            console.log(error);
           });
       },
     });
@@ -128,9 +130,10 @@ function DraftList(props: RouteComponentProps) {
 
   // 获取列表
   useEffect(() => {
-    getBlogArticleList()
+    getBlogDraftList()
       .then((res) => {
         if (res.code === 200) {
+          console.log(res);
           const filterData = [...res.data].map((item: BlogArticleListI) => ({
             articleId: item.id,
             articleTitle: item.article_title,

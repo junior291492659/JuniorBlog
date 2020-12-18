@@ -128,7 +128,8 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
           })
           .catch((error) => {
             setLoading(false);
-            message.error("catch an error", error);
+            message.error("不好意思，服务器出错了");
+            console.log(error);
           });
       } else {
         message.success("修改之前已存储的");
@@ -169,13 +170,22 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
           })
           .catch((error) => {
             setLoading(false);
-            message.error("catch an error", error);
+            message.error("不好意思，服务器出错了");
+            console.log(error);
           });
       }
     }
   };
 
-  const saveArticle = () => {};
+  const saveArticle = () => {
+    if (condition()) {
+      message.success("存储校验通过");
+      if (!article.articleId) {
+        message.success("新的存储");
+      } else {
+      }
+    }
+  };
 
   const condition = () => {
     if (!article.articleTitle) {
@@ -235,8 +245,9 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
           setLoading(false);
         })
         .catch((error) => {
-          message.error(error);
           setLoading(false);
+          message.error("不好意思，服务器出错了");
+          console.log(error);
         });
     }
   }, []);

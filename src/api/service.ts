@@ -106,6 +106,25 @@ export function deleteBlogArticleById(id: number) {
     .then((res) => res.data);
 }
 
+// 获取草稿列表
+export function getBlogDraftList() {
+  return service
+    .request({
+      method: "get",
+      url: baseUrl + "/admin/getBlogDraftList",
+    })
+    .then((res) => res.data);
+}
+
+export function getImage(name: string) {
+  return service
+    .request({
+      method: "get",
+      url: baseUrl + "/default/getImage/" + name,
+    })
+    .then((res) => res.data);
+}
+
 export function getEverydaySentence() {
   return service
     .request({

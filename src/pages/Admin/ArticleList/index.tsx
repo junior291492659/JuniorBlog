@@ -151,7 +151,8 @@ function ArticleList(props: RouteComponentProps) {
       })
       .catch((error) => {
         setLoading(false);
-        message.error(error);
+        message.error("不好意思，服务器出错了");
+        console.log(error);
       });
   }, [counter]);
   return (

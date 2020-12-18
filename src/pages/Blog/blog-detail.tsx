@@ -115,8 +115,9 @@ function BlogDetail(props: RouteComponentProps) {
           setLoading(false);
         })
         .catch((error) => {
-          message.error(error);
-          setLoading(false);
+          message.error("不好意思，服务器出错了");
+          console.log(error);
+          // setLoading(false);
         });
     } else {
       //  url不对，获取不到文章 id，直接跳转至首页

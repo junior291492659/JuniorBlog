@@ -17,6 +17,7 @@ import { Helmet } from "react-helmet-async";
 import Index from "./IndexPage";
 import AddArticle from "./AddArticle";
 import ArticleList from "../ArticleList";
+import DraftList from "../DraftList";
 import ImageUpload from "../ImageUpload";
 import Test from "../../../components/EveryDaySentence/test";
 
@@ -72,7 +73,9 @@ function Main() {
               <Menu.Item key="4">
                 <Link to="/admin/addArticle">添加文章</Link>
               </Menu.Item>
-              <Menu.Item key="5">草稿列表</Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/admin/draftList">草稿列表</Link>
+              </Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<FileImageOutlined />} title="图片">
               <Menu.Item key="6">
@@ -119,6 +122,11 @@ function Main() {
                 path="/admin/articleList"
                 exact
                 component={ArticleList}
+              ></Route>
+              <Route
+                path="/admin/draftList"
+                exact
+                component={DraftList}
               ></Route>
               <Route
                 path="/admin/uploadImage"
