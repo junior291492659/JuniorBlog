@@ -13,9 +13,14 @@ import img1 from "../../image/intro1.jpg";
 
 export interface BlogArticleI {
   id: number;
-  type: number;
+  articleType: string;
+  sourceType: string;
   title: string;
   introduction: string;
+  viewCount: number;
+  assitCount: number;
+  introduceImage: string;
+  publishDate: string;
 }
 
 interface BlogArticleProps {
@@ -30,33 +35,42 @@ export default function BlogArticleIntroduction(props: BlogArticleProps) {
         <div className={style["blog-header"]}>
           <div className={style["blog-title-wrap"]}>
             <div className={style["blog-title"]}>
-              <strong>{data.type == 1 ? "【转载】" : "【原创】"}</strong>
+              <strong>{`【${data.sourceType}】`}</strong>
               <Link to={`/blogdetail/article${data.id}`}>{data.title}</Link>
               <div className={style["blog-icon-list"]}>
                 <span className={style["blog-icon"]}>
                   <Link to={`/blog/tag/TODO`}>
-                    <BorderlessTableOutlined /> 技术分享
+                    <BorderlessTableOutlined /> {data.articleType}
                   </Link>
                 </span>
                 <span className={style["blog-icon"]}>
-                  <Link to={`/blogassign/article/TODO`}>
-                    <FireFilled /> {666}
+                  <Link to={`/blogdetail/article${data.id}`}>
+                    <FireFilled /> {data.viewCount}
                   </Link>
                 </span>
                 <span className={style["blog-icon"]}>
-                  <Link to={`/blogassign/article/TODO`}>
-                    <LikeFilled /> {18}
+                  <Link to={`/blogdetail/article${data.id}`}>
+                    <LikeFilled /> {data.assitCount}
                   </Link>
                 </span>
               </div>
             </div>
             <div className={style["blog-time"]}>
               <div className={style["blog-day"]}>
-                <span className={style["blog-highlight"]}>{11}</span>日
+                <span className={style["blog-highlight"]}>
+                  {data.publishDate.split("-")[2]}
+                </span>
+                日
               </div>
               <div className={style["blog-else"]}>
-                <span className={style["blog-highlight"]}>{2020}</span> 年-
-                <span className={style["blog-highlight"]}>{12}</span> 月
+                <span className={style["blog-highlight"]}>
+                  {data.publishDate.split("-")[0]}
+                </span>{" "}
+                年-
+                <span className={style["blog-highlight"]}>
+                  {data.publishDate.split("-")[1]}
+                </span>{" "}
+                月
               </div>
             </div>
           </div>
@@ -72,7 +86,7 @@ export default function BlogArticleIntroduction(props: BlogArticleProps) {
               className={style["text"]}
             >
               <Link
-                to={`/blogassign/article/TODO`}
+                to={`/blogdetail/article${data.id}`}
                 style={{ color: "inherit" }}
               >
                 <div className={style["text-title"]}>文章简介：</div>
@@ -81,10 +95,11 @@ export default function BlogArticleIntroduction(props: BlogArticleProps) {
                   <Button
                     type="link"
                     onClick={() =>
+                      // props.history.push(`/blogdetail/article${data.id}`)
                       window.history.pushState(
                         null,
                         "",
-                        `/blogassign/article/TODO`
+                        `/blogdetail/article${data.id}`
                       )
                     }
                   >
@@ -101,13 +116,13 @@ export default function BlogArticleIntroduction(props: BlogArticleProps) {
               xl={10}
               className={style["img"]}
             >
-              <Link to={`/blogassign/article/TODO`}>
-                <img src={img1} />
+              <Link to={`/blogdetail/article${data.id}`}>
+                <img src={data.introduceImage} />
               </Link>
             </Col>
           </Row>
         </div>
-        <div className={style["blog-footer"]}>www.juniorlee.city</div>
+        <div className={style["blog-footer"]}>welcome to tap in</div>
       </div>
     </LazyLoad>
   );

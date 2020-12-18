@@ -49,6 +49,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "lodash": "^4.17.20",
     "markdown-navbar": "^1.4.3",
     "marked": "^1.2.7",
     "mini-css-extract-plugin": "0.11.3",
@@ -179,6 +180,7 @@
   "devDependencies": {
     "@types/highlight.js": "^10.1.0",
     "@types/jquery": "^3.5.5",
+    "@types/lodash": "^4.14.165",
     "@types/marked": "^1.2.1",
     "@types/react-helmet-async": "^1.0.3",
     "@types/react-highlight": "^0.12.2",

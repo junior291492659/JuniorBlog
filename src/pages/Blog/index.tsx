@@ -6,10 +6,11 @@ import Container from "../../components/Container";
 import LeeCard from "../../components/LeeCard";
 
 import { withRouter, Link } from "react-router-dom";
-
+import { getBlogArticleList, BlogArticleListI } from "../../api/service";
 import BlogArticleIntroduction, {
   BlogArticleI,
 } from "./blog-article-introduction";
+import { ArticleType, ArticleSourceType } from "../../const";
 
 function Blog() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -17,21 +18,22 @@ function Blog() {
 
   useEffect(() => {
     // setLoading(true);
-
-    setTimeout(() => {
+    getBlogArticleList().then((res) => {
+      const filterData = [...res.data].map((item: BlogArticleListI) => ({
+        id: item.id,
+        articleType: ArticleType[item.article_type],
+        sourceType: ArticleSourceType[item.article_source_type],
+        title: item.article_title,
+        introduction: item.introducemd,
+        viewCount: item.view_count,
+        assitCount: item.assit_count,
+        introduceImage: item.introduce_image,
+        publishDate: item.publish_date,
+      }));
+      console.log("filterData", filterData);
+      setBlogList(filterData);
       setLoading(false);
-      setBlogList([
-        { id: 1, type: 1, title: "Test1", introduction: "简介1。。。" },
-        { id: 1, type: 1, title: "Test2", introduction: "简介2。。。" },
-        { id: 1, type: 2, title: "Test3", introduction: "简介3。。。" },
-        { id: 1, type: 1, title: "Test4", introduction: "简介4。。。" },
-        { id: 1, type: 1, title: "Test5", introduction: "简介5。。。" },
-        { id: 1, type: 2, title: "Test6", introduction: "简介6。。。" },
-        { id: 1, type: 1, title: "Test7", introduction: "简介7。。。" },
-        { id: 1, type: 1, title: "Test8", introduction: "简介8。。。" },
-        { id: 1, type: 2, title: "Test9", introduction: "简介9。。。" },
-      ]);
-    }, 1000);
+    });
   }, []);
   return (
     <Loader loading={loading}>

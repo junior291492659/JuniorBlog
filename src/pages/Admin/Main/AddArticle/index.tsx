@@ -6,6 +6,8 @@ import "highlight.js/styles/monokai-sublime.css";
 import style from "./index.module.less";
 import "../../../../publicCSS/style.css";
 import { Row, Col, Input, Select, Button, DatePicker, message } from "antd";
+import { addBlogArticle, AddBlogArticleI } from "../../../../api/service";
+import Loader from "../../../../components/Loader";
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -24,7 +26,7 @@ marked.setOptions({
   },
 });
 
-interface ArticleI {
+export interface ArticleI {
   articleId: number; // 0; // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
   // oldarticleTitle: ""; //以前的标题(保存后在数据库依照此标题修改)
   articleTitle: string; // ""; //文章标题
@@ -32,11 +34,12 @@ interface ArticleI {
   markdownContent: string; // "预览内容"; //html内容
   introducemd: string; // ""; //简介的markdown内容
   introducehtml: string; // "等待编辑"; //简介的html内容
-  publishDate: Moment | null; // ""; //发布日期
-  updateDate: number; // ""; //修改日志的日期(未使用)
+  publishDate: string; // ""; //发布日期
+  updateDate: string; // ""; //修改日志的日期(未使用)
   // typeInfo: []; // 文章类别信息(未使用)
   selectedType: number | string; //选择的文章类别
   sourceType: number | string; // ""; //文章来源  原创 || 转载
+  introduceImage: string; // 列表页简介图片
 
   //   disabled: false; //修改文章后按钮不可点击
   //   titledisabled: false; //标题改变控制按钮不可点击
@@ -50,13 +53,16 @@ export default function AddArticle() {
     markdownContent: "预览内容", //html内容
     introducemd: "", //简介的markdown内容
     introducehtml: "等待编辑", //简介的html内容
-    publishDate: null, //发布日期
-    updateDate: 0, //修改日志的日期(未使用)
+    publishDate: "", //发布日期
+    updateDate: "", //修改日志的日期(未使用)
     // typeInfo: [], // 文章类别信息(未使用)
     selectedType: -1, //选择的文章类别
     sourceType: -1, //文章来源
+    introduceImage:
+      "https://www.runoob.com/wp-content/uploads/2019/01/ts-2020-12-01-1.png",
   };
   const [article, setArticle] = useState<ArticleI>(initial);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const changeContent = (value: string) => {
     const html = marked(value);
@@ -70,14 +76,62 @@ export default function AddArticle() {
 
   const saveArticle = () => {};
 
-  const publishArticle = () => {};
+  const publishArticle = () => {
+    if (condition()) {
+      message.success("存储校验通过");
+      if (!article.articleId) {
+        message.success("新的存储");
+        const article_title = article.articleTitle;
+        const article_content = article.articleContent;
+        const markdown_content = article.markdownContent;
+        const introducemd = article.introducemd;
+        const introducehtml = article.introducehtml;
+        const publish_date = article.publishDate;
+        const update_date = "";
+        const article_type = article.selectedType as number;
+        const article_source_type = article.sourceType as number;
+        const introduce_image = article.introduceImage;
+
+        const data: AddBlogArticleI = {
+          article_title,
+          article_content,
+          markdown_content,
+          introducemd,
+          introducehtml,
+          publish_date,
+          update_date,
+          article_type,
+          article_source_type,
+          introduce_image,
+        };
+
+        setLoading(true);
+        addBlogArticle(data)
+          .then((res) => {
+            setLoading(false);
+            if (res.code === 200) {
+              message.success(res.message);
+            } else {
+              message.error(res.message);
+            }
+          })
+          .catch((error) => {
+            setLoading(false);
+            message.error("catch an error", error);
+          });
+      }
+    }
+  };
 
   const condition = () => {
     if (!article.articleTitle) {
       message.warning("文章标题不能为空");
       return false;
-    } else if (!article.selectedType) {
+    } else if (article.selectedType === -1) {
       message.warning("必须选择文章类型");
+      return false;
+    } else if (article.sourceType === -1) {
+      message.warning("文章来源不能为空");
       return false;
     } else if (!article.articleContent) {
       message.warning("文章内容不能为空");
@@ -87,9 +141,6 @@ export default function AddArticle() {
       return false;
     } else if (!article.publishDate) {
       message.warning("发布日期不能为空");
-      return false;
-    } else if (!article.sourceType) {
-      message.warning("文章来源不能为空");
       return false;
     }
     return true;
@@ -109,7 +160,7 @@ export default function AddArticle() {
     document.addEventListener("keydown", handleSave);
   }, []);
   return (
-    <div>
+    <Loader loading={loading}>
       <Row gutter={10}>
         {/* 主体内容左侧部分 */}
         <Col span={18}>
@@ -207,24 +258,22 @@ export default function AddArticle() {
                 }}
               />
               <br />
-              <br />
-              <div
+              {/* <br /> */}
+              {/* <div
                 className={`${style["introduce-html"]} markdown`}
                 dangerouslySetInnerHTML={{ __html: article.introducehtml }}
-              ></div>
+              ></div> */}
             </Col>
             <Col span={12}>
               <div className={style["date-select"]}>
                 <DatePicker
                   value={
-                    article.publishDate === null
-                      ? null
-                      : moment(article.publishDate)
+                    !article.publishDate ? null : moment(article.publishDate)
                   }
                   placeholder="发布日期"
                   size="large"
-                  onChange={(date) =>
-                    setArticle({ ...article, publishDate: date })
+                  onChange={(date, dateString) =>
+                    setArticle({ ...article, publishDate: dateString })
                   }
                 />
               </div>
@@ -232,6 +281,6 @@ export default function AddArticle() {
           </Row>
         </Col>
       </Row>
-    </div>
+    </Loader>
   );
 }
