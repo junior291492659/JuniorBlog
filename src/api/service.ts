@@ -80,6 +80,32 @@ export function getBlogArticleById(id: number) {
     .then((res) => res.data);
 }
 
+export interface updateBlogArticleByIdI extends AddBlogArticleI {
+  id: number;
+}
+
+// 根据 ID 修改某一条博客
+export function updateBlogArticleById(data: updateBlogArticleByIdI) {
+  return service
+    .request({
+      method: "post",
+      url: baseUrl + "/admin/updateBlogArticleById",
+      data,
+    })
+    .then((res) => res.data);
+}
+
+// 根据 ID 删除某一条博客
+export function deleteBlogArticleById(id: number) {
+  return service
+    .request({
+      method: "post",
+      url: baseUrl + "/admin/deleteBlogArticleById",
+      data: { id },
+    })
+    .then((res) => res.data);
+}
+
 export function getEverydaySentence() {
   return service
     .request({

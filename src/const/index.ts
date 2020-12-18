@@ -1,6 +1,6 @@
 export enum ArticleType {
   "博客分享" = 0,
-  "Leetcodexunl" = 1,
+  "Leetcode训练" = 1,
 }
 
 export enum ArticleSourceType {

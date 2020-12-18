@@ -6,8 +6,16 @@ import "highlight.js/styles/monokai-sublime.css";
 import style from "./index.module.less";
 import "../../../../publicCSS/style.css";
 import { Row, Col, Input, Select, Button, DatePicker, message } from "antd";
-import { addBlogArticle, AddBlogArticleI } from "../../../../api/service";
+import {
+  addBlogArticle,
+  AddBlogArticleI,
+  BlogArticleListI,
+  getBlogArticleById,
+  updateBlogArticleById,
+  updateBlogArticleByIdI,
+} from "../../../../api/service";
 import Loader from "../../../../components/Loader";
+import { RouteComponentProps } from "react-router-dom";
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -45,7 +53,11 @@ export interface ArticleI {
   //   titledisabled: false; //标题改变控制按钮不可点击
 }
 
-export default function AddArticle() {
+interface RouterInfo {
+  id: string;
+}
+
+export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
   const initial: ArticleI = {
     articleId: 0, // 文章的ID，如果是0说明是新增加，如果不是0，说明是修改
     articleTitle: "", //文章标题
@@ -73,8 +85,6 @@ export default function AddArticle() {
     const html = marked(value);
     setArticle({ ...article, introducemd: value, introducehtml: html });
   };
-
-  const saveArticle = () => {};
 
   const publishArticle = () => {
     if (condition()) {
@@ -111,6 +121,48 @@ export default function AddArticle() {
             setLoading(false);
             if (res.code === 200) {
               message.success(res.message);
+              props.history.push("/admin/articleList");
+            } else {
+              message.error(res.message);
+            }
+          })
+          .catch((error) => {
+            setLoading(false);
+            message.error("catch an error", error);
+          });
+      } else {
+        message.success("修改之前已存储的");
+        const id = article.articleId;
+        const article_title = article.articleTitle;
+        const article_content = article.articleContent;
+        const markdown_content = article.markdownContent;
+        const introducemd = article.introducemd;
+        const introducehtml = article.introducehtml;
+        const publish_date = article.publishDate;
+        const update_date = "";
+        const article_type = article.selectedType as number;
+        const article_source_type = article.sourceType as number;
+        const introduce_image = article.introduceImage;
+
+        const data: updateBlogArticleByIdI = {
+          id,
+          article_title,
+          article_content,
+          markdown_content,
+          introducemd,
+          introducehtml,
+          publish_date,
+          update_date,
+          article_type,
+          article_source_type,
+          introduce_image,
+        };
+        updateBlogArticleById(data)
+          .then((res) => {
+            setLoading(false);
+            if (res.code === 200) {
+              message.success(res.message);
+              props.history.push("/admin/articleList");
             } else {
               message.error(res.message);
             }
@@ -122,6 +174,8 @@ export default function AddArticle() {
       }
     }
   };
+
+  const saveArticle = () => {};
 
   const condition = () => {
     if (!article.articleTitle) {
@@ -146,6 +200,48 @@ export default function AddArticle() {
     return true;
   };
 
+  // 如果是查看页面，根据url的id初始化data
+  useEffect(() => {
+    console.log("id", props.match.params.id);
+    const id = props.match.params.id;
+    if (id) {
+      getBlogArticleById(parseInt(id))
+        .then((res) => {
+          console.log("by id", res);
+          if (res.data) {
+            const filterData = res.data as BlogArticleListI;
+            setArticle({
+              articleId: filterData.id,
+              articleTitle: filterData.article_title, //文章标题
+              articleContent: filterData.article_content, //markdown的编辑内容
+              markdownContent: filterData.markdown_content, //html内容
+              introducemd: filterData.introducemd, //简介的markdown内容
+              introducehtml: filterData.introducehtml, //简介的html内容
+              publishDate: filterData.publish_date, //发布日期
+              updateDate: filterData.update_date, //修改日志的日期(未使用)
+              // typeInfo: [], // 文章类别信息(未使用)
+              selectedType: filterData.article_type, //选择的文章类别
+              sourceType: filterData.article_source_type, //文章来源
+              introduceImage:
+                "https://www.runoob.com/wp-content/uploads/2019/01/ts-2020-12-01-1.png",
+            });
+          } else {
+            // 文章不存在 TODO直接跳转至首页
+            setTimeout(() => {
+              message.warning("opps,找不到该文章");
+              props.history.replace("/admin/articleList");
+            }, 1000);
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          message.error(error);
+          setLoading(false);
+        });
+    }
+  }, []);
+
+  // 监听保存快捷键的 effect
   useEffect(() => {
     const handleSave = (e: KeyboardEvent) => {
       if (
@@ -158,6 +254,8 @@ export default function AddArticle() {
     };
 
     document.addEventListener("keydown", handleSave);
+
+    return () => document.removeEventListener("keydown", handleSave);
   }, []);
   return (
     <Loader loading={loading}>

@@ -92,12 +92,13 @@ ol ol {
 
 .markdown li {
   margin: 10px;
+  padding-left: 1rem;
   position: relative;
 }
 
-.markdown li p {
+/* .markdown li p {
   margin: 16px !important;
-}
+} */
 .markdown ul li::before {
   content: "";
   width: 10px;
@@ -105,9 +106,9 @@ ol ol {
   border-radius: 50%;
   background-color: #ff6700;
   position: absolute;
-  top: 50%;
+  top: 7px;
   left: 0;
-  transform: translateY(-50%);
+  /* transform: translateY(-50%); */
 }
 .markdown ul li:hover {
   background-color: rgba(255, 103, 0, 0.2);

@@ -111,6 +111,11 @@ function Main() {
                 component={AddArticle}
               ></Route>
               <Route
+                path="/admin/addArticle/:id"
+                exact
+                component={AddArticle}
+              ></Route>
+              <Route
                 path="/admin/articleList"
                 exact
                 component={ArticleList}

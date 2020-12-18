@@ -22,7 +22,7 @@ interface ArticleListI {
   sourceType: number | string; // ""; //文章来源  原创 || 转载
 }
 
-function ArticleList(props: RouteComponentProps) {
+function DraftList(props: RouteComponentProps) {
   const [data, setData] = useState<ArticleListI[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   // 删除之后自增用于重渲染
@@ -168,4 +168,4 @@ function ArticleList(props: RouteComponentProps) {
   );
 }
 
-export default ArticleList;
+export default DraftList;
