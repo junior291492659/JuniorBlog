@@ -5,6 +5,8 @@ import Header from "../../components/Header";
 import Container from "../../components/Container";
 import Loader from "../../components/Loader";
 import LeeCard from "../../components/LeeCard";
+import QQCard from "../../components/QQCard";
+import WechatCard from "../../components/WechatCard";
 import Reply from "../../components/Reply";
 import style from "./index.module.less";
 import defaultHeadImg from "../../image/defaultImg.jpg";
@@ -484,7 +486,11 @@ function Interact() {
           </Divider>
         </div>
 
-        <LeeCard />
+        <>
+          <LeeCard />
+          <WechatCard />
+          <QQCard />
+        </>
       </Container>
     </div>
   );
