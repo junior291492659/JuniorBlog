@@ -26,6 +26,7 @@ import {
   BlogArticleListI,
   addView,
   AddViewI,
+  addAssit,
 } from "../../api/service";
 import { ArticleType, ArticleSourceType } from "../../const";
 import Tocify from "../../components/Tocify";
@@ -88,12 +89,13 @@ function BlogDetail(props: RouteComponentProps) {
     }
   };
 
+  // 获取文章内容
   useEffect(() => {
     const pathname = props.location.pathname;
-    console.log(/^\/article\d+$/.test(pathname));
+    // console.log(/^\/article\d+$/.test(pathname));
     if (/\d+$/.test(pathname)) {
       const id = pathname.split("/").reverse()[0].slice(7);
-      console.log("id", id);
+      // console.log("id", id);
       getBlogArticleById(parseInt(id))
         .then((res) => {
           console.log("by id", res);
@@ -144,6 +146,20 @@ function BlogDetail(props: RouteComponentProps) {
       });
     }
   }, [data]);
+
+  // 添加点赞数
+  useEffect(() => {
+    if (isAsisted) {
+      console.log("assit effect");
+      addAssit({
+        id: data?.id as number,
+        assit_count: data?.remark as number,
+      }).catch((error) => {
+        message.error("不好意思，服务器出错了");
+        console.log(error);
+      });
+    }
+  }, [isAsisted]);
   return (
     <Loader loading={loading}>
       <Header />

@@ -47,6 +47,11 @@ export interface AddViewI {
   view_count: number;
 }
 
+export interface AddAssitI {
+  id: number;
+  assit_count: number;
+}
+
 // 新增一条博客
 export function addBlogArticle(data: AddBlogArticleI) {
   return service
@@ -126,7 +131,18 @@ export function addView(data: AddViewI) {
   return service
     .request({
       method: "post",
-      url: baseUrl + "/admin/addView",
+      url: baseUrl + "/default/addView",
+      data,
+    })
+    .then((res) => res.data);
+}
+
+// 添加点赞数
+export function addAssit(data: AddAssitI) {
+  return service
+    .request({
+      method: "post",
+      url: baseUrl + "/default/addAssit",
       data,
     })
     .then((res) => res.data);
