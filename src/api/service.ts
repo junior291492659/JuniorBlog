@@ -141,11 +141,59 @@ export function getImage(name: string) {
     .then((res) => res.data);
 }
 
-export function getEverydaySentence() {
+export interface AddInteractI {
+  name: string;
+  context: string;
+  can_reply: number;
+  is_master: number;
+  email: string;
+  create_time: number;
+}
+
+// 添加留言
+export function addInteract(data: AddInteractI) {
   return service
     .request({
-      method: "get",
-      url: "http://open.iciba.com/dsapi/",
+      method: "post",
+      url: baseUrl + "/default/addInteract",
+      data,
     })
     .then((res) => res.data);
 }
+
+// 获取留言
+export function getInteract() {
+  return service
+    .request({
+      method: "get",
+      url: baseUrl + "/default/getInteract",
+    })
+    .then((res) => res.data);
+}
+
+export interface AddInteractReplyI extends AddInteractI {
+  fid: number;
+  fname: string;
+  femail: string;
+  fis_master: number;
+}
+
+// 添加回复
+export function addInteractReply(data: AddInteractReplyI) {
+  return service
+    .request({
+      method: "post",
+      url: baseUrl + "/default/addInteractReply",
+      data,
+    })
+    .then((res) => res.data);
+}
+
+// export function getEverydaySentence() {
+//   return service
+//     .request({
+//       method: "get",
+//       url: "http://open.iciba.com/dsapi/",
+//     })
+//     .then((res) => res.data);
+// }

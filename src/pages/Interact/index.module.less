@@ -1,0 +1,212 @@
+@fontColor: rgb(252, 192, 0);
+
+.interact-wrap {
+  width: 97%;
+  margin: 20px 0;
+  padding: 2rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  position: relative;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  .master {
+    font-size: 1.2rem;
+    color: @fontColor;
+  }
+
+  a {
+    color: #1890ff;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  .interact-title {
+    animation: bounceInLeft 0.8s ease-in-out 0.2s backwards;
+    width: 100%;
+
+    .interact-title-header {
+      width: 100%;
+      padding-left: 1rem;
+      font-size: 1.5rem;
+      border-left: solid 5px @fontColor;
+      border-bottom: solid 2px @fontColor;
+      color: rgb(128, 129, 127);
+      font-weight: 600;
+    }
+
+    .interact-title-context-wrap {
+      display: flex;
+      align-items: center;
+
+      .poster {
+        width: 300px;
+        height: 300px;
+        flex: 1;
+        opacity: 0.5;
+      }
+    }
+
+    .interact-title-context {
+      margin-left: 2rem;
+      padding-top: 1.7rem;
+      line-height: 2rem;
+      font-size: 1rem;
+
+      .context-author {
+        text-indent: 4rem;
+      }
+    }
+  }
+
+  .interact-edit-wrap {
+    margin-top: 3rem;
+    padding: 0 2rem;
+
+    .interact-edit-header {
+      padding-left: 1rem;
+      border-left: solid 5px @fontColor;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgb(128, 129, 127);
+      margin-bottom: 1rem;
+    }
+
+    .interact-reply {
+      margin: 1rem 0;
+      padding: 0.5rem 1rem;
+      border-left: solid 5px #ccc;
+      background-color: hsla(0, 0%, 91%, 0.8);
+
+      .reply-item {
+        font-weight: 600;
+        margin-top: 0.5rem;
+        white-space: pre-wrap;
+      }
+    }
+
+    :global {
+      .ant-form-item {
+        margin-bottom: 10px !important;
+      }
+    }
+
+    .interact-inputarea {
+      padding: 0.6rem 1.2rem;
+      border-color: @fontColor;
+      border-radius: 5px;
+      border-width: 2px;
+      border-left-width: 1px !important;
+      border-right-width: 1px !important;
+    }
+
+    .interact-inputarea:hover {
+      border-color: @fontColor !important;
+      border-radius: 7px;
+      box-shadow: 0 0 3px 1px @fontColor;
+    }
+    .interact-inputarea:focus {
+      border-color: @fontColor !important;
+      box-shadow: 0 0 3px 1px @fontColor;
+      border-radius: 15px;
+    }
+
+    .interact-headImg {
+      width: 3rem;
+      height: 3rem;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: block;
+      border: 2px solid rgb(231, 232, 230);
+    }
+
+    .interact-edit-subline {
+      .email {
+        color: #999 !important;
+        font-size: 1rem;
+      }
+
+      .email-input {
+        border: 2px dotted @fontColor;
+      }
+
+      .email-input:hover {
+        box-shadow: 0 0 1px 1px @fontColor;
+      }
+      .email-input:focus {
+        box-shadow: 0 0 3px 1px @fontColor;
+      }
+
+      :global {
+        .ant-checkbox-inner {
+          border-color: @fontColor;
+        }
+
+        .ant-switch-checked {
+          background-color: @fontColor !important;
+        }
+      }
+
+      .interact-submit {
+        color: @fontColor;
+        border: 1px solid @fontColor;
+      }
+      .interact-submit:hover {
+        background-color: @fontColor;
+        color: white !important;
+        border: 1px solid @fontColor !important;
+      }
+      .interact-submit:focus {
+        background-color: @fontColor;
+        color: white !important;
+        border: 1px solid @fontColor !important;
+      }
+
+      .canreply {
+        color: #999;
+      }
+    }
+  }
+
+  .interact-list {
+    margin-top: 3rem;
+    padding: 0 2rem;
+    border-bottom: dashed 1px rgb(231, 232, 230);
+
+    .interact-list-header {
+      padding-left: 1rem;
+      border-left: solid 5px @fontColor;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgb(128, 129, 127);
+    }
+
+    .interact-list-context:first-child {
+      margin-top: 1rem;
+    }
+
+    .interact-list-context {
+      :global {
+        .ant-comment {
+          .ant-comment-inner {
+            border-top: dashed 1px rgb(231, 232, 230);
+          }
+        }
+      }
+    }
+
+    .no-reply {
+      padding: 1rem 0;
+      font-size: 2rem;
+      color: #ccc;
+      text-indent: 2rem;
+    }
+  }
+
+  .ending {
+    font-size: 1.5rem;
+    color: @fontColor;
+    margin-bottom: 0;
+  }
+}

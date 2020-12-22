@@ -111,7 +111,7 @@ function Header() {
                 : `${style.item} animated`
             }
           >
-            <Link to="/interact">留言板</Link>
+            <Link to="/interact">图片</Link>
           </li>
           <li
             className={
@@ -120,7 +120,7 @@ function Header() {
                 : `${style.item} animated`
             }
           >
-            <Link to="/life">历程</Link>
+            <Link to="/interact">留言板</Link>
           </li>
           <li
             className={

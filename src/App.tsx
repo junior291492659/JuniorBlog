@@ -6,6 +6,7 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/Blog/blog-detail";
 import Login from "./pages/Admin/Login";
 import Main from "./pages/Admin/Main";
+import Interact from "./pages/Interact";
 import { BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/blogdetail/:id" exact component={BlogDetail}></Route>
             <Route path="/login" exact component={Login}></Route>
             <Route path="/admin" component={Main}></Route>
+            <Route path="/interact" exact component={Interact}></Route>
           </Switch>
         </div>
         <BackTop />
