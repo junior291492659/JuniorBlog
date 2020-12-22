@@ -6,7 +6,7 @@ import lv from "../../image/LV1.png";
 import { QqOutlined, GithubOutlined, ZhihuOutlined } from "@ant-design/icons";
 import style from "./index.module.less";
 
-export default function LemonCard() {
+function LeeCard() {
   return (
     <div className={`${style["visiting-card"]} animated fadeInRight`}>
       <div
@@ -67,3 +67,5 @@ export default function LemonCard() {
     </div>
   );
 }
+
+export default React.memo(LeeCard);
