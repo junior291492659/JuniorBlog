@@ -21,7 +21,12 @@ import style from "./blog.detail.module.less";
 import "../../publicCSS/style.css";
 import heart from "../../image/heart.png";
 // import { blogData1 } from "./mockData";
-import { getBlogArticleById, BlogArticleListI } from "../../api/service";
+import {
+  getBlogArticleById,
+  BlogArticleListI,
+  addView,
+  AddViewI,
+} from "../../api/service";
 import { ArticleType, ArticleSourceType } from "../../const";
 import Tocify from "../../components/Tocify";
 
@@ -101,7 +106,7 @@ function BlogDetail(props: RouteComponentProps) {
               introduction: filterData.introducemd,
               tagName: ArticleType[filterData.article_type],
               time: filterData.publish_date,
-              fire: filterData.view_count,
+              fire: filterData.view_count + 1,
               remark: filterData.assit_count,
               markdown: filterData.article_content,
             });
@@ -129,6 +134,16 @@ function BlogDetail(props: RouteComponentProps) {
       }, 1000);
     }
   }, []);
+
+  // 添加浏览次数
+  useEffect(() => {
+    if (data) {
+      addView({ id: data.id, view_count: data.fire }).catch((error) => {
+        message.error("不好意思，服务器出错了");
+        console.log(error);
+      });
+    }
+  }, [data]);
   return (
     <Loader loading={loading}>
       <Header />

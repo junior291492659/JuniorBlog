@@ -42,6 +42,11 @@ export interface AddBlogArticleI {
   introduce_image: string;
 }
 
+export interface AddViewI {
+  id: number;
+  view_count: number;
+}
+
 // 新增一条博客
 export function addBlogArticle(data: AddBlogArticleI) {
   return service
@@ -112,6 +117,17 @@ export function getBlogDraftList() {
     .request({
       method: "get",
       url: baseUrl + "/admin/getBlogDraftList",
+    })
+    .then((res) => res.data);
+}
+
+// 添加浏览次数
+export function addView(data: AddViewI) {
+  return service
+    .request({
+      method: "post",
+      url: baseUrl + "/admin/addView",
+      data,
     })
     .then((res) => res.data);
 }
