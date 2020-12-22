@@ -72,7 +72,7 @@ function Header() {
       case "":
         index = 0;
         break;
-      case "image":
+      case "images":
         index = 1;
         break;
       case "interact":
@@ -111,7 +111,7 @@ function Header() {
                 : `${style.item} animated`
             }
           >
-            <Link to="/interact">图片</Link>
+            <Link to="/images">图片</Link>
           </li>
           <li
             className={

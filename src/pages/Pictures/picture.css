@@ -1,0 +1,39 @@
+.comm-main img {
+  vertical-align: top;
+}
+
+.comm-main .pic {
+  padding: 10px;
+  border: 1px solid #cccc;
+  border-radius: 5px;
+}
+
+#main {
+  position: relative;
+}
+.comm-main .divimg {
+  transition: all 0.8s linear;
+  margin: 0px auto !important;
+}
+.comm-main .suofanga:hover .divimg {
+  transform: scale(1.05, 1.05);
+}
+
+@media screen and (max-width: 411px) {
+  .comm-main .box img {
+    width: 280px;
+  }
+  .comm-main .box {
+    float: left;
+    padding: 15px 0 0 0;
+  }
+}
+@media screen and (min-width: 410px) {
+  .comm-main .box img {
+    width: 230px;
+  }
+  .comm-main .box {
+    float: left;
+    padding: 15px 7px 0 7px;
+  }
+}
