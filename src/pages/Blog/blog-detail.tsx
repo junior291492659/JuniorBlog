@@ -3,7 +3,6 @@ import Container from "../../components/Container";
 import Loader from "../../components/Loader";
 import Header from "../../components/Header";
 import LeeCard from "../../components/LeeCard";
-import ArticleMenu from "../../components/ArticleMenu";
 
 import { PageHeader, Divider, message, Affix } from "antd";
 import {
@@ -15,7 +14,7 @@ import {
 import marked from "marked";
 import hljs from "highlight.js";
 import "highlight.js/styles/monokai-sublime.css";
-import { withRouter, Link, RouteComponentProps } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 // import moment from "moment";
 import style from "./blog.detail.module.less";
 import "../../publicCSS/style.css";
@@ -25,7 +24,6 @@ import {
   getBlogArticleById,
   BlogArticleListI,
   addView,
-  AddViewI,
   addAssit,
 } from "../../api/service";
 import { ArticleType, ArticleSourceType } from "../../const";
@@ -135,7 +133,7 @@ function BlogDetail(props: RouteComponentProps) {
         props.history.replace("/");
       }, 1000);
     }
-  }, []);
+  }, [props.location.pathname]);
 
   // 添加浏览次数
   useEffect(() => {

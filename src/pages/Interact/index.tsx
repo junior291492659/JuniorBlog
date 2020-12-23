@@ -87,7 +87,7 @@ function Interact() {
 
     // 验证邮箱格式
     const emailValue = form.getFieldValue("email").trim();
-    if (!/^[\w\-]+@qq\.com$/i.test(emailValue)) {
+    if (!/^[\w-]+@qq\.com$/i.test(emailValue)) {
       message.error("QQ邮箱格式不正确");
       setTimeout(() => setLoading(false), 2000);
       return;
@@ -152,7 +152,7 @@ function Interact() {
 
   const handleMail = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const value = ev.target.value.trim();
-    if (value === "" || !/^[\w\-]+@qq\.com$/i.test(value)) {
+    if (value === "" || !/^[\w-]+@qq\.com$/i.test(value)) {
       setHeadImg("");
       return;
     } else setHeadImg(`http://q4.qlogo.cn/g?b=qq&nk=${value}&s=3`);

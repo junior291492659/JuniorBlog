@@ -9,8 +9,6 @@ import {
 import style from "./introduction.module.less";
 import { Link } from "react-router-dom";
 
-import img1 from "../../image/intro1.jpg";
-
 export interface BlogArticleI {
   id: number;
   articleType: string;
@@ -117,7 +115,7 @@ export default function BlogArticleIntroduction(props: BlogArticleProps) {
               className={style["img"]}
             >
               <Link to={`/blogdetail/article${data.id}`}>
-                <img src={data.introduceImage} />
+                <img src={data.introduceImage} alt="" />
               </Link>
             </Col>
           </Row>

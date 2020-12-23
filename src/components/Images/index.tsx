@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../../components/Header";
 import "./picture.css";
 import { useImperativeDialog } from "../../components/imperative-dialog";
@@ -19,7 +19,7 @@ interface ImagesI {
  * @param props : ImagesI
  */
 function Images(props: ImagesI) {
-  const { category, imageData, header = true } = props;
+  const { imageData, header = true } = props;
 
   // const [data, setData] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -166,24 +166,25 @@ function Images(props: ImagesI) {
     }
     return 0;
   };
-  const checkWillLoadNewBox = (parent: any, child: any) => {
-    //1. 获取最后的盒子
-    var lastBox = child[child.length - 1];
-    //2. 求最后盒子高度的一半
-    try {
-      var lastBoxDis = lastBox.offsetHeight * 0.5 + lastBox.offsetTop;
-    } catch (error) {
-      return;
-    }
+  // const checkWillLoadNewBox = (parent: any, child: any) => {
+  //   //1. 获取最后的盒子
+  //   var lastBox = child[child.length - 1];
+  //   //2. 求最后盒子高度的一半
+  //   try {
+  //     var lastBoxDis = lastBox.offsetHeight * 0.5 + lastBox.offsetTop;
+  //   } catch (error) {
+  //     return;
+  //   }
 
-    //3. 求出页面高度
-    var screenH =
-      document.body.clientHeight || document.documentElement.clientHeight;
-    //4. 求出页面滚出浏览器高度
-    var scrollTopH = document.documentElement.scrollTop;
-    //5. 返回结果
-    return lastBoxDis <= screenH + scrollTopH;
-  };
+  //   //3. 求出页面高度
+  //   var screenH =
+  //     document.body.clientHeight || document.documentElement.clientHeight;
+  //   //4. 求出页面滚出浏览器高度
+  //   var scrollTopH = document.documentElement.scrollTop;
+  //   //5. 返回结果
+  //   return lastBoxDis <= screenH + scrollTopH;
+  // };
+
   const load = () => {
     isload.current += 1;
     if (isload.current === imageData.length) {
@@ -225,6 +226,7 @@ function Images(props: ImagesI) {
                           className="divimg"
                           src={`${baseUrl}${item.source}`}
                           onLoad={() => load()}
+                          alt=""
                         />
                         <div className="cover">
                           <span

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Popover } from "antd";
+import { Row, Col } from "antd";
 import EveryDaySentence from "../EveryDaySentence";
 import { Helmet } from "react-helmet-async";
 import style from "./index.module.less";

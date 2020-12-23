@@ -1,7 +1,7 @@
 import { Button } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { RouteComponentProps } from "react-router-dom";
-import { getImage } from "../../api/service";
+// import { getImage } from "../../api/service";
 import { useImperativeDialog } from "../imperative-dialog";
 import ImageViewer from "../image-viewer";
 

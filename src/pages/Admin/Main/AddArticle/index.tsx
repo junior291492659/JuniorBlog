@@ -262,13 +262,13 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
           console.log(error);
         });
     }
-  }, []);
+  }, [props.match.params]);
 
   // 监听保存快捷键的 effect
   useEffect(() => {
     const handleSave = (e: KeyboardEvent) => {
       if (
-        e.key == "s" &&
+        e.key === "s" &&
         (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
       ) {
         e.preventDefault();
@@ -416,7 +416,7 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
                 className={style["image-select"]}
                 onClick={() => setVisible(true)}
               >
-                <img src={imageselect} />
+                <img src={imageselect} alt="" />
               </div>
             </Col>
           </Row>

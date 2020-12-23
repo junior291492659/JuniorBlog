@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "./index.module.less";
 import { checkLogin } from "../../../api/service";
 import Loader from "../../../components/Loader";
-import { Link, Route, Switch, withRouter } from "react-router-dom";
+import { Link, Route, withRouter } from "react-router-dom";
 
 import { Layout, Menu, Breadcrumb, Button } from "antd";
 import {

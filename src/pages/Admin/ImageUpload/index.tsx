@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Upload, Modal, Row, Col, Select, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { UploadFile, UploadFileStatus } from "antd/lib/upload/interface";
+import { UploadFile } from "antd/lib/upload/interface";
 import Images from "../../../components/Images";
 import style from "./index.module.less";
-import { ImagesType } from "../../../const";
 import { getImages } from "../../../api/service";
 
 const { Option } = Select;

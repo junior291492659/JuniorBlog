@@ -3,13 +3,13 @@ import { Popover } from "antd";
 import logo from "../../image/Overwatch-big.png";
 import { UpSquareOutlined, DownSquareOutlined } from "@ant-design/icons";
 import style from "./index.module.less";
-import { Link, withRouter } from "react-router-dom";
+import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 
 /**
  * 导航栏
  * props：暂无，由于内容较为固定，暂时 hard-code
  */
-function Header() {
+function Header(props: RouteComponentProps) {
   // 控制当前header元素所在的高亮
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   // 控制header元素的显隐，用于移动端
@@ -67,7 +67,7 @@ function Header() {
 
   useEffect(() => {
     const path = window.location.pathname.split("/"); // 解析path
-    let index = currentIndex;
+    let index = -1;
     switch (path[1]) {
       case "":
         index = 0;
@@ -83,7 +83,7 @@ function Header() {
         break;
     }
     setCurrentIndex(index);
-  }, [window.location.pathname]);
+  }, [props.location.pathname]);
   return (
     <div className={style.header}>
       <div className={style.nav}>

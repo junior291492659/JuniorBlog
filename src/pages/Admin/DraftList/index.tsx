@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Spin, Table, message, Button, Modal } from "antd";
 import {
-  getBlogArticleList,
   BlogArticleListI,
   deleteBlogArticleById,
   getBlogDraftList,

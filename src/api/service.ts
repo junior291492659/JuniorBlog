@@ -1,6 +1,4 @@
 import service from "./index";
-import { ArticleI } from "../pages/Admin/Main/AddArticle";
-import { post } from "jquery";
 
 const baseUrl = "http://127.0.0.1:7001";
 
@@ -148,15 +146,6 @@ export function addAssit(data: AddAssitI) {
     .then((res) => res.data);
 }
 
-export function getImage(name: string) {
-  return service
-    .request({
-      method: "get",
-      url: baseUrl + "/default/getImage/" + name,
-    })
-    .then((res) => res.data);
-}
-
 export interface AddInteractI {
   name: string;
   context: string;
@@ -201,6 +190,16 @@ export function addInteractReply(data: AddInteractReplyI) {
       method: "post",
       url: baseUrl + "/default/addInteractReply",
       data,
+    })
+    .then((res) => res.data);
+}
+
+// 获取图片
+export function getImage(name: string) {
+  return service
+    .request({
+      method: "get",
+      url: baseUrl + "/default/getImage/" + name,
     })
     .then((res) => res.data);
 }

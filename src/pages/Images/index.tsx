@@ -230,6 +230,7 @@ function Images(props: ImagesI) {
                           item +
                           ").jpg"
                         }
+                        alt=""
                         onLoad={() => load()}
                         onClick={(e) => {
                           console.log("object");
