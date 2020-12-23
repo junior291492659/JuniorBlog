@@ -81,8 +81,7 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
     // typeInfo: [], // 文章类别信息(未使用)
     selectedType: -1, //选择的文章类别
     sourceType: -1, //文章来源
-    introduceImage:
-      "https://www.runoob.com/wp-content/uploads/2019/01/ts-2020-12-01-1.png",
+    introduceImage: "",
   };
   const [article, setArticle] = useState<ArticleI>(initial);
   const [loading, setLoading] = useState<boolean>(false);
@@ -218,6 +217,8 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
     } else if (!article.publishDate) {
       message.warning("发布日期不能为空");
       return false;
+    } else if (!article.introduceImage) {
+      message.warning("简介图片不能为空");
     }
     return true;
   };
@@ -244,8 +245,7 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
               // typeInfo: [], // 文章类别信息(未使用)
               selectedType: filterData.article_type, //选择的文章类别
               sourceType: filterData.article_source_type, //文章来源
-              introduceImage:
-                "https://www.runoob.com/wp-content/uploads/2019/01/ts-2020-12-01-1.png",
+              introduceImage: filterData.introduce_image,
             });
           } else {
             // 文章不存在 TODO直接跳转至首页
@@ -396,6 +396,18 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
                   onChange={(date, dateString) =>
                     setArticle({ ...article, publishDate: dateString })
                   }
+                />
+              </div>
+            </Col>
+            <Col span={12} style={{ display: "flex", alignItems: "flex-end" }}>
+              <div className={style["introduce-image-select"]}>
+                <Input
+                  placeholder="博客简介图片"
+                  value={article.introduceImage}
+                  size="large"
+                  onChange={(e) => {
+                    setArticle({ ...article, introduceImage: e.target.value });
+                  }}
                 />
               </div>
             </Col>
