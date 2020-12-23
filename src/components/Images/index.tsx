@@ -3,37 +3,40 @@ import Header from "../../components/Header";
 import "./picture.css";
 import { useImperativeDialog } from "../../components/imperative-dialog";
 import ImageViewer from "../../components/image-viewer";
-import { Col, Row, Spin } from "antd";
+import { Col, Row, Spin, Tooltip } from "antd";
+import { ImageDataI } from "../../pages/Admin/ImageUpload";
+import { CopyOutlined, EyeOutlined } from "@ant-design/icons";
 
-enum ImagesInfo {
-  NUMBER = 74,
-}
+const baseUrl = "http://127.0.0.1:7001/default/getImage/";
 
 interface ImagesI {
+  category: string; // 图片分类
+  imageData: ImageDataI[]; // 图片数量
   header?: boolean;
 }
-
+/**
+ * 和 pages 中的 Images大致相同，只不过这个可以接收参数（之前那个路由组件传参不方便）
+ * @param props : ImagesI
+ */
 function Images(props: ImagesI) {
-  const { header = true } = props;
-  const [data, setData] = useState<number[]>([]);
+  const { category, imageData, header = true } = props;
+
+  // const [data, setData] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const isload = useRef<number>(0);
-  //   const isload = useRef<number>(0);
-  // "https://www.jsfan.net/some/lifeimg/life%20(" + arr[i] + ").jpg"
-  // console.log(
-  //   Array(74)
-  //     .fill(0)
-  //     .map(
-  //       (item, index) =>
-  //         `https://www.jsfan.net/some/lifeimg/life%20(${index}).jpg`
-  //     )
-  // );
   const [modal, open] = useImperativeDialog(ImageViewer as any, {
-    images: data.map(
-      (item, index) =>
-        `https://www.jsfan.net/some/lifeimg/life%20(${index}).jpg`
-    ),
+    images: imageData.map((item) => `${baseUrl}${item.source}`),
   });
+
+  // useEffect(() => {
+  //   isload.current = 0;
+  //   console.log("images effect");
+  //   let arr = new Array(74);
+  //   for (let i = 0; i < arr.length; ++i) {
+  //     arr[i] = i;
+  //   }
+  //   setData(arr);
+  // }, []);
 
   const domPull = () => {
     var main = document.getElementById("main") as HTMLElement;
@@ -43,40 +46,40 @@ function Images(props: ImagesI) {
     waterFull(main, box);
     // },1000)
 
-    //加载数据
-    var timer1: any = null;
-    window.addEventListener("scroll", function (e) {
-      if (timer1) clearTimeout(timer1);
-      //节流
-      timer1 = setTimeout(function () {
-        if (checkWillLoadNewBox(main, box)) {
-          //假数据模仿数据加载
-          let arr = new Array(74); //30-60数组
-          for (let i = 0; i < arr.length; i++) {
-            arr[i] = i;
-          }
-          //遍历数据
-          for (let i = 0; i < arr.length; i++) {
-            var newBox = document.createElement("div");
-            newBox.className = "box";
-            main.appendChild(newBox);
+    // //加载数据
+    // var timer1: any = null;
+    // window.addEventListener("scroll", function (e) {
+    //   if (timer1) clearTimeout(timer1);
+    //   //节流
+    //   timer1 = setTimeout(function () {
+    //     if (checkWillLoadNewBox(main, box)) {
+    //       //假数据模仿数据加载
+    //       let arr = new Array(74); //30-60数组
+    //       for (let i = 0; i < arr.length; i++) {
+    //         arr[i] = i;
+    //       }
+    //       //遍历数据
+    //       for (let i = 0; i < arr.length; i++) {
+    //         var newBox = document.createElement("div");
+    //         newBox.className = "box";
+    //         main.appendChild(newBox);
 
-            var newPic = document.createElement("div");
-            newPic.className = "pic";
-            newBox.appendChild(newPic);
+    //         var newPic = document.createElement("div");
+    //         newPic.className = "pic";
+    //         newBox.appendChild(newPic);
 
-            var newImg = document.createElement("img");
-            newImg.src =
-              "https://www.jsfan.net/some/lifeimg/life%20(" + arr[i] + ").jpg";
-            console.log("newImg.src", newImg.src);
-            // newImg.addEventListener('click',()=>{Zmage.browsing({ src:"https://www.jsfan.net/some/lifeimg/life%20("+arr[i]+").jpg" })})
-            newPic.appendChild(newImg);
-          }
-          //重新进行瀑布流布局
-          waterFull(main, box);
-        }
-      }, 200);
-    });
+    //         var newImg = document.createElement("img");
+    //         newImg.src =
+    //           "https://www.jsfan.net/some/lifeimg/life%20(" + arr[i] + ").jpg";
+    //         console.log("newImg.src", newImg.src);
+    //         // newImg.addEventListener('click',()=>{Zmage.browsing({ src:"https://www.jsfan.net/some/lifeimg/life%20("+arr[i]+").jpg" })})
+    //         newPic.appendChild(newImg);
+    //       }
+    //       //重新进行瀑布流布局
+    //       waterFull(main, box);
+    //     }
+    //   }, 200);
+    // });
 
     //页面尺寸发生改变重新布局
     var timer2: any = null;
@@ -104,7 +107,6 @@ function Images(props: ImagesI) {
     //1.3 获取col的宽度
     var coldom = document.getElementsByClassName("comm-left")[0] as HTMLElement;
     var screenW = coldom.offsetWidth as number;
-    console.log("screenW", screenW);
     // console.log(screenW)
     //1.4 求出列数
     var cols = Math.floor(screenW / boxWidth);
@@ -184,21 +186,12 @@ function Images(props: ImagesI) {
   };
   const load = () => {
     isload.current += 1;
-    if (isload.current === 74) {
+    if (isload.current === imageData.length) {
       setLoading(false);
       domPull();
     }
   };
 
-  useEffect(() => {
-    isload.current = 0;
-    console.log("images effect");
-    let arr = new Array(74);
-    for (let i = 0; i < arr.length; ++i) {
-      arr[i] = i;
-    }
-    setData(arr);
-  }, []);
   return (
     <div>
       {header ? <Header /> : null}
@@ -223,27 +216,44 @@ function Images(props: ImagesI) {
         >
           <Spin tip="加载中..." spinning={loading}>
             <div id="main">
-              {data.map((item, key) => (
-                <div className="box" key={key}>
-                  <div className="pic">
-                    <div className="suofanga" style={{ overflow: "hidden" }}>
-                      <img
-                        className="divimg"
-                        src={
-                          "https://www.jsfan.net/some/lifeimg/life%20(" +
-                          item +
-                          ").jpg"
-                        }
-                        onLoad={() => load()}
-                        onClick={(e) => {
-                          console.log("object");
-                          open({ initialIndex: key }, e);
-                        }}
-                      />
+              {imageData.length > 0 ? (
+                imageData.map((item, key) => (
+                  <div className="box" key={key}>
+                    <div className="pic">
+                      <div className="suofanga" style={{ overflow: "hidden" }}>
+                        <img
+                          className="divimg"
+                          src={`${baseUrl}${item.source}`}
+                          onLoad={() => load()}
+                        />
+                        <div className="cover">
+                          <span
+                            onClick={(e) => {
+                              open({ initialIndex: key }, e);
+                            }}
+                          >
+                            <EyeOutlined />
+                          </span>
+                          <Tooltip
+                            title={`${baseUrl}${item.source}`}
+                            placement="top"
+                          >
+                            <span>
+                              <CopyOutlined />
+                            </span>
+                          </Tooltip>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                ))
+              ) : (
+                <div
+                  style={{ padding: "1rem", fontSize: "1rem", color: "#666" }}
+                >
+                  该分类暂无图片。
                 </div>
-              ))}
+              )}
             </div>
           </Spin>
         </Col>
@@ -253,4 +263,4 @@ function Images(props: ImagesI) {
   );
 }
 
-export default Images;
+export default React.memo(Images);

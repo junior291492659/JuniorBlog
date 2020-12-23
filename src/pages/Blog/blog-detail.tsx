@@ -34,7 +34,7 @@ import Tocify from "../../components/Tocify";
 message.config({
   top: 100,
   duration: 2,
-  maxCount: 3,
+  maxCount: 2,
 });
 
 interface BlogaricleI {

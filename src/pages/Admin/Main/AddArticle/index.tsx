@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import moment, { Moment } from "moment";
+import moment from "moment";
 import marked from "marked";
 import hljs from "highlight.js";
 import "highlight.js/styles/monokai-sublime.css";
 import style from "./index.module.less";
 import "../../../../publicCSS/style.css";
-import { Row, Col, Input, Select, Button, DatePicker, message } from "antd";
+import {
+  Row,
+  Col,
+  Input,
+  Select,
+  Button,
+  DatePicker,
+  message,
+  Modal,
+} from "antd";
 import {
   addBlogArticle,
   AddBlogArticleI,
@@ -16,6 +25,8 @@ import {
 } from "../../../../api/service";
 import Loader from "../../../../components/Loader";
 import { RouteComponentProps } from "react-router-dom";
+import imageselect from "../../../../image/imageselect.png";
+import ImageUpload from "../../../Admin/ImageUpload";
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -75,6 +86,7 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
   };
   const [article, setArticle] = useState<ArticleI>(initial);
   const [loading, setLoading] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
 
   const changeContent = (value: string) => {
     const html = marked(value);
@@ -387,9 +399,26 @@ export default function AddArticle(props: RouteComponentProps<RouterInfo>) {
                 />
               </div>
             </Col>
+            <Col span={12} style={{ display: "flex", alignItems: "flex-end" }}>
+              <div
+                className={style["image-select"]}
+                onClick={() => setVisible(true)}
+              >
+                <img src={imageselect} />
+              </div>
+            </Col>
           </Row>
         </Col>
       </Row>
+      <Modal
+        visible={visible}
+        maskClosable={false}
+        width={1366}
+        onCancel={() => setVisible(false)}
+        onOk={() => setVisible(false)}
+      >
+        <ImageUpload />
+      </Modal>
     </Loader>
   );
 }

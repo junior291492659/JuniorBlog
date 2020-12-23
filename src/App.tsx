@@ -11,8 +11,6 @@ import Images from "./pages/Images";
 import { BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import AddArticle from "./pages/Admin/Main/AddArticle";
-
 function App() {
   return (
     <HelmetProvider>

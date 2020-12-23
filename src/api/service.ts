@@ -205,6 +205,17 @@ export function addInteractReply(data: AddInteractReplyI) {
     .then((res) => res.data);
 }
 
+// 获取某分类图片数量
+export function getImages(data: { category: number }) {
+  return service
+    .request({
+      method: "post",
+      url: baseUrl + "/admin/getImages",
+      data,
+    })
+    .then((res) => res.data);
+}
+
 // export function getEverydaySentence() {
 //   return service
 //     .request({

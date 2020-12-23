@@ -11,7 +11,7 @@ function Test(props: TestPropsI) {
   console.log(props);
   const [img, setImg] = useState();
 
-  const [modal, open] = useImperativeDialog(ImageViewer, {
+  const [modal, open] = useImperativeDialog(ImageViewer as any, {
     images: [
       "https://images.unsplash.com/photo-1587334096951-1523ecad29ed?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80",
       "http://127.0.0.1:7001/default/getImage/1608283622090zhengfeng.jpg",

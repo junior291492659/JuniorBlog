@@ -1,0 +1,64 @@
+.comm-main img {
+  vertical-align: top;
+}
+
+.comm-main .pic {
+  padding: 10px;
+  border: 1px solid #cccc;
+  border-radius: 5px;
+}
+
+#main {
+  position: relative;
+}
+.comm-main .divimg {
+  transition: all 0.8s linear;
+  margin: 0px auto !important;
+}
+.comm-main .suofanga {
+  position: relative;
+}
+.comm-main .suofanga .cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #36363a;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.comm-main .suofanga .cover span {
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+}
+.comm-main .suofanga:hover .divimg {
+  cursor: pointer;
+  transform: scale(1.05, 1.05);
+}
+.comm-main .suofanga:hover .cover {
+  z-index: 2;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 411px) {
+  .comm-main .box img {
+    width: 280px;
+  }
+  .comm-main .box {
+    float: left;
+    padding: 15px 0 0 0;
+  }
+}
+@media screen and (min-width: 410px) {
+  .comm-main .box img {
+    width: 230px;
+  }
+  .comm-main .box {
+    float: left;
+    padding: 15px 7px 0 7px;
+  }
+}
