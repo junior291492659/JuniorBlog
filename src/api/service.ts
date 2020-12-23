@@ -205,13 +205,23 @@ export function addInteractReply(data: AddInteractReplyI) {
     .then((res) => res.data);
 }
 
-// 获取某分类图片数量
+// 获取某分类图片
 export function getImages(data: { category: number }) {
   return service
     .request({
       method: "post",
       url: baseUrl + "/admin/getImages",
       data,
+    })
+    .then((res) => res.data);
+}
+
+// 获取文章分类
+export function getArticleTags() {
+  return service
+    .request({
+      method: "get",
+      url: baseUrl + "/default/getArticleTags",
     })
     .then((res) => res.data);
 }

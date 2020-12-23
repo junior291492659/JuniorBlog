@@ -1,0 +1,41 @@
+.tag-wrap {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  .tag-header {
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgb(252, 192, 0);
+    font-weight: 500;
+    border-bottom: solid 1px #eee;
+  }
+
+  .tag-context {
+    padding: 0.8rem 0.5rem;
+    // border: solid 1px red;
+
+    .tag {
+      padding: 0.5rem 0;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-weight: bold;
+      font-size: 1rem;
+      border-left: solid 5px transparent;
+      border-top-right-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+      text-indent: 1.5rem;
+      cursor: pointer;
+
+      &:hover,
+      &.current {
+        background-color: #fceab2;
+        border-left: solid 5px #fcc001;
+      }
+    }
+  }
+}

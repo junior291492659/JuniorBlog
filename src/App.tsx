@@ -22,6 +22,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Blog}></Route>
             <Route path="/blogdetail/:id" exact component={BlogDetail}></Route>
+            <Route path="/blog/:tag" exact component={Blog}></Route>
             <Route path="/login" exact component={Login}></Route>
             <Route path="/admin" component={Main}></Route>
             <Route path="/images" exact component={Images}></Route>

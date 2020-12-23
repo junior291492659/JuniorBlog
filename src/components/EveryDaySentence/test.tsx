@@ -9,7 +9,7 @@ interface TestPropsI extends RouteComponentProps {}
 
 function Test(props: TestPropsI) {
   console.log(props);
-  const [img, setImg] = useState();
+  // const [img, setImg] = useState();
 
   const [modal, open] = useImperativeDialog(ImageViewer as any, {
     images: [

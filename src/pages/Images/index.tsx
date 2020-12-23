@@ -5,10 +5,6 @@ import { useImperativeDialog } from "../../components/imperative-dialog";
 import ImageViewer from "../../components/image-viewer";
 import { Col, Row, Spin } from "antd";
 
-enum ImagesInfo {
-  NUMBER = 74,
-}
-
 interface ImagesI {
   header?: boolean;
 }
