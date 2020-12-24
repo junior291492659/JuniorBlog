@@ -19,6 +19,7 @@ function Blog(props: RouteComponentProps<any, any, { type: number }>) {
   const [blogList, setBlogList] = useState<BlogArticleI[]>([]);
 
   useEffect(() => {
+    // 根据传给location的state来判断当前需要渲染的文章列表，配合ArticleTags组件
     const tagId = props.location.state?.type;
     // console.log("tagId", tagId);
     setLoading(true);
