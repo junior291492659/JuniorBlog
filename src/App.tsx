@@ -3,13 +3,16 @@ import React from "react";
 import "./App.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Blog from "./pages/Blog";
-import BlogDetail from "./pages/Blog/blog-detail";
 import Login from "./pages/Admin/Login";
 import Main from "./pages/Admin/Main";
 import Interact from "./pages/Interact";
 import Images from "./pages/Images";
 import { BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import BlogDetail from "./pages/Blog/blog-detail";
+const BlogDetail = React.lazy(
+  () => import(/* webpackChunkName:"BlogDetail" */ "./pages/Blog/blog-detail")
+);
 
 function App() {
   return (
@@ -19,15 +22,21 @@ function App() {
           <meta charSet="utf-8" />
         </Helmet>
         <div className="App">
-          <Switch>
-            <Route path="/" exact component={Blog}></Route>
-            <Route path="/blogdetail/:id" exact component={BlogDetail}></Route>
-            <Route path="/blog/:tag" exact component={Blog}></Route>
-            <Route path="/login" exact component={Login}></Route>
-            <Route path="/admin" component={Main}></Route>
-            <Route path="/images" exact component={Images}></Route>
-            <Route path="/interact" exact component={Interact}></Route>
-          </Switch>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path="/" exact component={Blog}></Route>
+              <Route
+                path="/blogdetail/:id"
+                exact
+                component={BlogDetail}
+              ></Route>
+              <Route path="/blog/:tag" exact component={Blog}></Route>
+              <Route path="/login" exact component={Login}></Route>
+              <Route path="/admin" component={Main}></Route>
+              <Route path="/images" exact component={Images}></Route>
+              <Route path="/interact" exact component={Interact}></Route>
+            </Switch>
+          </React.Suspense>
         </div>
         <BackTop />
       </Router>

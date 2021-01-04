@@ -449,6 +449,7 @@ module.exports = function (webpackEnv) {
                     { helpers: true },
                   ],
                 ],
+                plugins: ["@babel/plugin-syntax-dynamic-import"],
                 cacheDirectory: true,
                 // See #6846 for context on why cacheCompression is disabled
                 cacheCompression: false,
