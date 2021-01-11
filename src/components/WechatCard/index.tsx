@@ -5,7 +5,7 @@ import wechatQRcode from "../../image/wechatQRcode.png";
 
 function WechatCard() {
   return (
-    <div className={style["card-container"]}>
+    <div className={`${style["card-container"]} animated fadeInRight`}>
       <div className={style["card-header"]}>
         <WechatOutlined /> 我的微信
       </div>

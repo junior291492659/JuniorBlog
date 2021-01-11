@@ -7,6 +7,7 @@ import Login from "./pages/Admin/Login";
 import Main from "./pages/Admin/Main";
 import Interact from "./pages/Interact";
 import Images from "./pages/Images";
+import About from "./pages/About";
 import { BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import BlogDetail from "./pages/Blog/blog-detail";
@@ -35,6 +36,7 @@ function App() {
               <Route path="/admin" component={Main}></Route>
               <Route path="/images" exact component={Images}></Route>
               <Route path="/interact" exact component={Interact}></Route>
+              <Route path="/about" exact component={About}></Route>
             </Switch>
           </React.Suspense>
         </div>

@@ -129,7 +129,7 @@ function Header(props: RouteComponentProps) {
                 : `${style.item} animated`
             }
           >
-            <Link to="/friendLink">友链</Link>
+            <Link to="/about">关于</Link>
           </li>
         </ul>
         <Popover

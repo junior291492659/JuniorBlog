@@ -5,7 +5,7 @@ import QQQRcode from "../../image/QQQRcode.png";
 
 function QQCard() {
   return (
-    <div className={style["card-container"]}>
+    <div className={`${style["card-container"]} animated fadeInRight`}>
       <div className={style["card-header"]}>
         <QqOutlined /> 我的QQ
       </div>
