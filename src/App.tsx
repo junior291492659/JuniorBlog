@@ -22,7 +22,7 @@ function App() {
           <meta charSet="utf-8" />
         </Helmet>
         <div className="App">
-          <React.Suspense fallback={<div>Loading...</div>}>
+          <React.Suspense fallback={null}>
             <Switch>
               <Route path="/" exact component={Blog}></Route>
               <Route

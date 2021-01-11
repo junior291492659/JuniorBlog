@@ -73,7 +73,7 @@ function ImageUpload() {
   };
 
   const handleChange: (param: any) => void = ({ file, fileList }) => {
-    console.log("file", file);
+    // console.log("file", file);
     setImageList({ ...imageList, fileList });
     if (file.status === "done") {
       setCounter((counter) => counter + 1);
@@ -118,7 +118,7 @@ function ImageUpload() {
               <Option value={2}>其它图片</Option>
             </Select>
             <Upload
-              action="http://127.0.0.1:7001/admin/uploadImage"
+              action="http://129.204.231.203:7001/admin/uploadImage"
               data={() => ({ category, xxx: "666" })}
               headers={{
                 category: category + "",

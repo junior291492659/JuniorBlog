@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../components/Header";
 import "./picture.css";
 import { useImperativeDialog } from "../../components/imperative-dialog";
@@ -7,7 +7,8 @@ import { Col, Row, Spin, Tooltip } from "antd";
 import { ImageDataI } from "../../pages/Admin/ImageUpload";
 import { CopyOutlined, EyeOutlined } from "@ant-design/icons";
 
-const baseUrl = "http://127.0.0.1:7001/default/getImage/";
+// const baseUrl = "http://127.0.0.1:7001/default/getImage/";
+const baseUrl = "http://129.204.231.203:82/imgspace/";
 
 interface ImagesI {
   category: string; // 图片分类
@@ -192,6 +193,10 @@ function Images(props: ImagesI) {
       domPull();
     }
   };
+
+  useEffect(() => {
+    imageData.length === 0 && setLoading(false);
+  }, []);
 
   return (
     <div>

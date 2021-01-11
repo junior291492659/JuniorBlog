@@ -1,6 +1,7 @@
 import service from "./index";
 
-const baseUrl = "http://127.0.0.1:7001";
+// const baseUrl = "http://127.0.0.1:7001";
+const baseUrl = "http://129.204.231.203:7001";
 
 // 登录接口
 export interface ILogin {
