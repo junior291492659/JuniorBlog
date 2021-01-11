@@ -184,11 +184,9 @@ function Images(props: ImagesI) {
         message.success(res.message);
       })
       .catch((error) => {
+        setLoading(false);
         message.error("不好意思，服务器出错了。");
         console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
       });
     // isload.current = 0;
     // console.log("images effect");
