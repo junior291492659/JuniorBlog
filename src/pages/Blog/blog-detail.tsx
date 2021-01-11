@@ -161,7 +161,7 @@ function BlogDetail(props: RouteComponentProps) {
   return (
     <Loader loading={loading}>
       <Header />
-      <Container>
+      <Container title="博客">
         {/* {中间主栏目} */}
         <div className={`${style["md-wrap"]} animated rollIn`}>
           <PageHeader

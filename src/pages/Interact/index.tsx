@@ -215,7 +215,7 @@ function Interact() {
   return (
     <div>
       <Header />
-      <Container>
+      <Container title="留言板">
         <div className={style["interact-wrap"]}>
           <div className={style["interact-title"]}>
             <div className={style["interact-title-header"]}>

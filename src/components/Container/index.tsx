@@ -1,17 +1,22 @@
-import React from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 import { Row, Col } from "antd";
 import EveryDaySentence from "../EveryDaySentence";
 import { Helmet } from "react-helmet-async";
 import style from "./index.module.less";
 
-const Container: React.FC = (props) => {
+interface ContainerProps {
+  title: string;
+  children: ReactNode;
+}
+
+const Container = (props: ContainerProps) => {
   const content = React.Children.map(props.children, (child) => child);
   // const [main, ...aside] = content;
 
   return (
     <div className={style.center}>
       <Helmet>
-        <title>博客 | Junior_Lee的个人博客</title>
+        <title>{props.title} | Junior_Lee的个人博客</title>
       </Helmet>
 
       {/* <div className={style["everyday-sentence"]}>

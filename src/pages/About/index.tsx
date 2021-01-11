@@ -50,7 +50,7 @@ function About() {
   return (
     <div>
       <Header />
-      <Container>
+      <Container title="关于">
         <>
           <div className={style["about-wrap"]}>
             <h2 className={style["about-title"]}>关于 Junior_Lee本人</h2>

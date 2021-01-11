@@ -54,7 +54,7 @@ function Blog(props: RouteComponentProps<any, any, { type: number }>) {
   return (
     <Loader loading={loading}>
       <Header />
-      <Container>
+      <Container title="博客">
         <>
           {blogList.map((blog, index) => (
             <BlogArticleIntroduction key={index} data={blog} />

@@ -6,6 +6,7 @@ import ImageViewer from "../../components/image-viewer";
 import { ImageDataI } from "../Admin/ImageUpload";
 import { getImages } from "../../api/service";
 import { Col, message, Row, Spin } from "antd";
+import { Helmet } from "react-helmet-async";
 
 interface ImagesI {
   header?: boolean;
@@ -198,6 +199,9 @@ function Images(props: ImagesI) {
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>图片 | Junior_Lee的个人博客</title>
+      </Helmet>
       {header ? <Header /> : null}
 
       <Row
