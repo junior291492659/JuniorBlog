@@ -194,6 +194,8 @@ function Images(props: ImagesI) {
     }
   };
 
+  useEffect(() => domPull(), [imageData]);
+
   useEffect(() => {
     imageData.length === 0 && setLoading(false);
   }, []);
