@@ -3,32 +3,23 @@ import Header from "../../components/Header";
 import "./picture.css";
 import { useImperativeDialog } from "../../components/imperative-dialog";
 import ImageViewer from "../../components/image-viewer";
-import { Col, Row, Spin } from "antd";
+import { ImageDataI } from "../Admin/ImageUpload";
+import { getImages } from "../../api/service";
+import { Col, message, Row, Spin } from "antd";
 
 interface ImagesI {
   header?: boolean;
 }
 
+const baseUrl = "http://129.204.231.203:82/imgspace/";
+
 function Images(props: ImagesI) {
   const { header = true } = props;
-  const [data, setData] = useState<number[]>([]);
+  const [data, setData] = useState<ImageDataI[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const isload = useRef<number>(0);
-  //   const isload = useRef<number>(0);
-  // "https://www.jsfan.net/some/lifeimg/life%20(" + arr[i] + ").jpg"
-  // console.log(
-  //   Array(74)
-  //     .fill(0)
-  //     .map(
-  //       (item, index) =>
-  //         `https://www.jsfan.net/some/lifeimg/life%20(${index}).jpg`
-  //     )
-  // );
   const [modal, open] = useImperativeDialog(ImageViewer as any, {
-    images: data.map(
-      (item, index) =>
-        `https://www.jsfan.net/some/lifeimg/life%20(${index}).jpg`
-    ),
+    images: data.map((item) => `${baseUrl}${item.source}`),
   });
 
   const domPull = () => {
@@ -47,9 +38,9 @@ function Images(props: ImagesI) {
       timer1 = setTimeout(function () {
         if (checkWillLoadNewBox(main, box)) {
           //假数据模仿数据加载
-          let arr = new Array(74); //30-60数组
+          let arr = new Array(data.length);
           for (let i = 0; i < arr.length; i++) {
-            arr[i] = i;
+            arr[i] = data[i];
           }
           //遍历数据
           for (let i = 0; i < arr.length; i++) {
@@ -62,8 +53,7 @@ function Images(props: ImagesI) {
             newBox.appendChild(newPic);
 
             var newImg = document.createElement("img");
-            newImg.src =
-              "https://www.jsfan.net/some/lifeimg/life%20(" + arr[i] + ").jpg";
+            newImg.src = `${baseUrl}${data[i].source}`;
             console.log("newImg.src", newImg.src);
             // newImg.addEventListener('click',()=>{Zmage.browsing({ src:"https://www.jsfan.net/some/lifeimg/life%20("+arr[i]+").jpg" })})
             newPic.appendChild(newImg);
@@ -180,20 +170,33 @@ function Images(props: ImagesI) {
   };
   const load = () => {
     isload.current += 1;
-    if (isload.current === 74) {
+    if (isload.current === data.length) {
       setLoading(false);
       domPull();
     }
   };
 
   useEffect(() => {
-    isload.current = 0;
-    console.log("images effect");
-    let arr = new Array(74);
-    for (let i = 0; i < arr.length; ++i) {
-      arr[i] = i;
-    }
-    setData(arr);
+    getImages({ category: 0 })
+      .then((res) => {
+        console.log("res in images", res);
+        setData(res.data);
+        message.success(res.message);
+      })
+      .catch((error) => {
+        message.error("不好意思，服务器出错了。");
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    // isload.current = 0;
+    // console.log("images effect");
+    // let arr = new Array(74);
+    // for (let i = 0; i < arr.length; ++i) {
+    //   arr[i] = i;
+    // }
+    // setData(arr);
   }, []);
   return (
     <div>
@@ -225,11 +228,7 @@ function Images(props: ImagesI) {
                     <div className="suofanga" style={{ overflow: "hidden" }}>
                       <img
                         className="divimg"
-                        src={
-                          "https://www.jsfan.net/some/lifeimg/life%20(" +
-                          item +
-                          ").jpg"
-                        }
+                        src={`${baseUrl}${item.source}`}
                         alt=""
                         onLoad={() => load()}
                         onClick={(e) => {
