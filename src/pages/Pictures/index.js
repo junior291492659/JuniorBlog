@@ -4,7 +4,9 @@ import "./picture.css";
 import { Col, Row, Spin } from "antd";
 import { useImperativeDialog } from "../../components/imperative-dialog";
 import ImageViewer from "../../components/image-viewer";
-
+/**
+ * 本文件为图片展示的源码的出处，仅供参考
+ */
 var isload = 0;
 class Picture extends Component {
   constructor(props) {
