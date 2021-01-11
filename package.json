@@ -189,6 +189,7 @@
     "@types/lodash": "^4.14.165",
     "@types/lodash-es": "^4.17.4",
     "@types/marked": "^1.2.1",
+    "@types/md5": "^2.2.1",
     "@types/react-helmet-async": "^1.0.3",
     "@types/react-highlight": "^0.12.2",
     "@types/react-lazyload": "^3.0.0",
@@ -196,6 +197,7 @@
     "babel-plugin-import": "^1.13.3",
     "http-server": "^0.12.3",
     "less": "^3.12.2",
-    "less-loader": "^7.1.0"
+    "less-loader": "^7.1.0",
+    "md5": "^2.3.0"
   }
 }

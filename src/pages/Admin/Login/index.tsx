@@ -6,6 +6,7 @@ import style from "./index.module.less";
 import { login, checkLogin, ILogin } from "../../../api/service";
 import { useLocalStorage } from "../../../utils/useLocalStorage";
 import { RouteComponentProps } from "react-router-dom";
+import md5 from "md5";
 // import { withRouter } from "react-router-dom";
 
 const layout = {
@@ -29,7 +30,7 @@ function Login(props: RouteComponentProps) {
 
   const onFinish = (values: LoginData) => {
     console.log("Success:", values);
-    login({ username: values.username, password: values.password })
+    login({ username: values.username, password: md5(values.password) })
       .then((res) => {
         console.log("res in login", res);
         if (res.code === 200) {
