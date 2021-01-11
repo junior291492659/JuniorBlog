@@ -6,10 +6,10 @@ import style from "./index.module.less";
 
 interface ContainerProps {
   title: string;
-  children: ReactNode;
+  // children: ReactNode;
 }
 
-const Container = (props: ContainerProps) => {
+const Container = (props: React.PropsWithChildren<ContainerProps>) => {
   const content = React.Children.map(props.children, (child) => child);
   // const [main, ...aside] = content;
 
