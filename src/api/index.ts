@@ -29,11 +29,7 @@ service.interceptors.response.use(
   (response: AxiosResponse) => {
     console.log("收到响应了");
     const code = response.data.code;
-    if (
-      code === 100 &&
-      window.location.pathname !== "/login" &&
-      window.location.pathname !== "/interact"
-    ) {
+    if (code === 100 && window.location.pathname !== "/login") {
       message.warn(response.data.message + "请重新登录");
       window.location.replace("/login");
     }
