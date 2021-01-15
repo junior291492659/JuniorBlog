@@ -6,9 +6,15 @@ import ImageViewer from "../../components/image-viewer";
 import { Col, Row, Spin, Tooltip } from "antd";
 import { ImageDataI } from "../../pages/Admin/ImageUpload";
 import { CopyOutlined, EyeOutlined } from "@ant-design/icons";
+import {
+  ProductionImageUploadApi,
+  DevelopmentImageUploadApi,
+} from "../../const";
 
-// const baseUrl = "http://127.0.0.1:7001/default/getImage/";
-const baseUrl = "http://129.204.231.203:82/imgspace/";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? ProductionImageUploadApi
+    : DevelopmentImageUploadApi;
 
 interface ImagesI {
   category: string; // 图片分类

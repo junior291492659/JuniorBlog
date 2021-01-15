@@ -5,6 +5,7 @@ import { UploadFile } from "antd/lib/upload/interface";
 import Images from "../../../components/Images";
 import style from "./index.module.less";
 import { getImages } from "../../../api/service";
+import { ProductionApi, DevelopmentApi } from "../../../const";
 
 const { Option } = Select;
 
@@ -118,7 +119,11 @@ function ImageUpload() {
               <Option value={2}>其它图片</Option>
             </Select>
             <Upload
-              action="http://129.204.231.203:7001/admin/uploadImage"
+              action={
+                process.env.NODE_ENV === "production"
+                  ? `${ProductionApi}/admin/uploadImage`
+                  : `${DevelopmentApi}/admin/uploadImage`
+              }
               data={() => ({ category, xxx: "666" })}
               headers={{
                 category: category + "",

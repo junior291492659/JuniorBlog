@@ -7,12 +7,19 @@ import { ImageDataI } from "../Admin/ImageUpload";
 import { getImages } from "../../api/service";
 import { Col, message, Row, Spin } from "antd";
 import { Helmet } from "react-helmet-async";
+import {
+  ProductionImageUploadApi,
+  DevelopmentImageUploadApi,
+} from "../../const";
 
 interface ImagesI {
   header?: boolean;
 }
 
-const baseUrl = "http://129.204.231.203:82/imgspace/";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? ProductionImageUploadApi
+    : DevelopmentImageUploadApi;
 
 function Images(props: ImagesI) {
   const { header = true } = props;

@@ -1,7 +1,8 @@
 import service from "./index";
+import { ProductionApi, DevelopmentApi } from "../const";
 
-// const baseUrl = "http://127.0.0.1:7001";
-const baseUrl = "http://129.204.231.203:7001";
+const baseUrl =
+  process.env.NODE_ENV === "production" ? ProductionApi : DevelopmentApi;
 
 // 登录接口
 export interface ILogin {

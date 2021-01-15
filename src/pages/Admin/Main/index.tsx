@@ -15,11 +15,29 @@ import {
 
 import { Helmet } from "react-helmet-async";
 import Index from "./IndexPage";
-import AddArticle from "./AddArticle";
-import ArticleList from "../ArticleList";
-import DraftList from "../DraftList";
-import ImageUpload from "../ImageUpload";
-import Test from "../../../components/EveryDaySentence/test";
+// import AddArticle from "./AddArticle";
+// import ArticleList from "../ArticleList";
+// import DraftList from "../DraftList";
+// import ImageUpload from "../ImageUpload";
+// import Test from "../../../components/EveryDaySentence/test";
+const AddArticle = React.lazy(
+  () => import(/* webpackChunkName:"AddArticle" */ "./AddArticle")
+);
+const ArticleList = React.lazy(
+  () => import(/* webpackChunkName:"ArticleList" */ "../ArticleList")
+);
+const DraftList = React.lazy(
+  () => import(/* webpackChunkName:"DraftList" */ "../DraftList")
+);
+const ImageUpload = React.lazy(
+  () => import(/* webpackChunkName:"ImageUpload" */ "../ImageUpload")
+);
+const Test = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName:"Test" */ "../../../components/EveryDaySentence/test"
+    )
+);
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
