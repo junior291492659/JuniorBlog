@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import Loader from "./components/Loader";
 import Blog from "./pages/Blog";
 // import Login from "./pages/Admin/Login";
 // import BlogDetail from "./pages/Blog/blog-detail";
@@ -40,13 +41,12 @@ const About = React.lazy(
       /* webpackChunkName:"About" */ /* webpackPrefetch: true */ "./pages/About"
     )
 );
-
-const PlaceHolder = (
-  <div>
-    <Spin tip="正在极速加载中">
-      <div style={{ width: "100vw", height: "100vh" }}></div>
-    </Spin>
-  </div>
+const PlaceHolder = React.cloneElement(
+  <Loader loading={true} />,
+  {
+    style: { top: "auto", color: "#f1c000" },
+  },
+  <div style={{ width: "100vw", height: "100vh" }}></div>
 );
 
 function App() {
@@ -76,7 +76,6 @@ function App() {
         </div>
         <BackTop />
       </Router>
-      {/* <h1 className="animated bounce">An animated element</h1> */}
     </HelmetProvider>
   );
 }
