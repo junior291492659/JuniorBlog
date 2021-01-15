@@ -1,18 +1,20 @@
 import React from "react";
-// import Header from "./components/Header";
 import "./App.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Blog from "./pages/Blog";
 // import Login from "./pages/Admin/Login";
+// import BlogDetail from "./pages/Blog/blog-detail";
 // import Main from "./pages/Admin/Main";
 // import Interact from "./pages/Interact";
 // import Images from "./pages/Images";
 // import About from "./pages/About";
-import { BackTop } from "antd";
+import { Spin, BackTop } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import BlogDetail from "./pages/Blog/blog-detail";
 const BlogDetail = React.lazy(
-  () => import(/* webpackChunkName:"BlogDetail" */ "./pages/Blog/blog-detail")
+  () =>
+    import(
+      /* webpackChunkName:"BlogDetail" */ /* webpackPrefetch: true */ "./pages/Blog/blog-detail"
+    )
 );
 const Login = React.lazy(
   () => import(/* webpackChunkName:"Login" */ "./pages/Admin/Login")
@@ -21,13 +23,30 @@ const Main = React.lazy(
   () => import(/* webpackChunkName:"Main" */ "./pages/Admin/Main")
 );
 const Images = React.lazy(
-  () => import(/* webpackChunkName:"Images" */ "./pages/Images")
+  () =>
+    import(
+      /* webpackChunkName:"Images" */ /* webpackPrefetch: true */ "./pages/Images"
+    )
 );
 const Interact = React.lazy(
-  () => import(/* webpackChunkName:"Interact" */ "./pages/Interact")
+  () =>
+    import(
+      /* webpackChunkName:"Interact" */ /* webpackPrefetch: true */ "./pages/Interact"
+    )
 );
 const About = React.lazy(
-  () => import(/* webpackChunkName:"About" */ "./pages/About")
+  () =>
+    import(
+      /* webpackChunkName:"About" */ /* webpackPrefetch: true */ "./pages/About"
+    )
+);
+
+const PlaceHolder = (
+  <div>
+    <Spin tip="正在极速加载中">
+      <div style={{ width: "100vw", height: "100vh" }}></div>
+    </Spin>
+  </div>
 );
 
 function App() {
@@ -38,7 +57,7 @@ function App() {
           <meta charSet="utf-8" />
         </Helmet>
         <div className="App">
-          <React.Suspense fallback={null}>
+          <React.Suspense fallback={PlaceHolder}>
             <Switch>
               <Route path="/" exact component={Blog}></Route>
               <Route

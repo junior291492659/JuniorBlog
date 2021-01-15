@@ -101,7 +101,7 @@ function BlogDetail(props: RouteComponentProps) {
             const filterData = res.data as BlogArticleListI;
             setData({
               id: filterData.id,
-              type: ArticleSourceType[filterData.assit_count],
+              type: ArticleSourceType[filterData.article_source_type],
               title: filterData.article_title,
               introduction: filterData.introducemd,
               tagName: ArticleType[filterData.article_type],
