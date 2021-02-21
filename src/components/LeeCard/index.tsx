@@ -45,7 +45,7 @@ function LeeCard() {
           <Col span={8}>
             <div className={style["link-item"]}>
               <a
-                href="https://github.com/soul-of-code"
+                href="https://github.com/junior291492659"
                 className={style["card-github"]}
               >
                 <GithubOutlined />
@@ -55,7 +55,7 @@ function LeeCard() {
           <Col span={8}>
             <div className={style["link-item"]}>
               <a
-                href="https://www.zhihu.com/people/cong-ba-ba-bu-ge-you"
+                href="https://www.zhihu.com/people/juniorlee-46"
                 className={style["card-zhihu"]}
               >
                 <ZhihuOutlined />
