@@ -26,7 +26,7 @@ export default function EveryDaySentence() {
       url: "http://open.iciba.com/dsapi",
       dataType: "jsonp", //加上这行代码即可
       success: function (result) {
-        console.log(result, typeof result);
+        // console.log(result, typeof result);
         try {
           const res = {
             content: result.content,
