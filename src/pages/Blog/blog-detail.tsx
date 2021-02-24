@@ -89,6 +89,7 @@ function BlogDetail(props: RouteComponentProps) {
 
   // 获取文章内容
   useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     const pathname = props.location.pathname;
     // console.log(/^\/article\d+$/.test(pathname));
     if (/\d+$/.test(pathname)) {
@@ -165,7 +166,15 @@ function BlogDetail(props: RouteComponentProps) {
         {/* {中间主栏目} */}
         <div className={`${style["md-wrap"]} animated rollIn`}>
           <PageHeader
-            title="返回首页"
+            title={
+              <span
+                onClick={() => {
+                  props.history.push("/");
+                }}
+              >
+                返回首页
+              </span>
+            }
             className={style["md-back"]}
             onBack={() => {
               console.log("back");

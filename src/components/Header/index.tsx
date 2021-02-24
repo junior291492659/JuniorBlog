@@ -67,7 +67,7 @@ function Header(props: RouteComponentProps) {
 
   useEffect(() => {
     const path = window.location.pathname.split("/"); // 解析path
-    let index = -1;
+    let index = 0;
     switch (path[1]) {
       case "":
         index = 0;
