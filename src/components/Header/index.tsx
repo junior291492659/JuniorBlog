@@ -41,7 +41,7 @@ function Header(props: RouteComponentProps) {
               : style["item-ph"]
           }
         >
-          <Link to="/interact">留言板</Link>
+          <Link to="/images">图片</Link>
         </li>
         <li
           className={
@@ -50,7 +50,7 @@ function Header(props: RouteComponentProps) {
               : style["item-ph"]
           }
         >
-          <Link to="/life">历程</Link>
+          <Link to="/interact">留言板</Link>
         </li>
         <li
           className={
@@ -59,7 +59,7 @@ function Header(props: RouteComponentProps) {
               : style["item-ph"]
           }
         >
-          <Link to="/friendLink">友链</Link>
+          <Link to="/about">关于</Link>
         </li>
       </div>
     );
