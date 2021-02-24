@@ -89,6 +89,7 @@ function BlogDetail(props: RouteComponentProps) {
 
   // 获取文章内容
   useEffect(() => {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     const pathname = props.location.pathname;
     // console.log(/^\/article\d+$/.test(pathname));
     if (/\d+$/.test(pathname)) {
