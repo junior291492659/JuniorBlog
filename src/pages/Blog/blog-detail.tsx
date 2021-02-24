@@ -165,7 +165,15 @@ function BlogDetail(props: RouteComponentProps) {
         {/* {中间主栏目} */}
         <div className={`${style["md-wrap"]} animated rollIn`}>
           <PageHeader
-            title="返回首页"
+            title={
+              <span
+                onClick={() => {
+                  props.history.push("/");
+                }}
+              >
+                返回首页
+              </span>
+            }
             className={style["md-back"]}
             onBack={() => {
               console.log("back");
